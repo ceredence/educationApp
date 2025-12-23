@@ -1,3 +1,4 @@
+import 'package:dinacomapp/Components/custom_color.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatefulWidget {
@@ -21,7 +22,7 @@ class _CustomButtonState extends State<CustomButton> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTapDown: (_) => setState(() => _isPressed = true),
-      onTapUp: (_) {
+      onTap: () {
         setState(() => _isPressed = false);
         widget.onPressed();
       },
@@ -72,6 +73,69 @@ class _CustomButtonState extends State<CustomButton> {
                 ),
               ),
             ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ButtonHome extends StatelessWidget {
+  final IconData? icon;
+  final int? level;
+  final String title;
+  final VoidCallback onPressed;
+
+  const ButtonHome({super.key, required this.onPressed, this.icon, required this.title, this.level});
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      borderRadius: BorderRadius.circular(16),
+      onTap: onPressed,
+      child: Container(
+        width: 110,
+        height: 110,
+        decoration: BoxDecoration(
+          color: CustomColor.button,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+            color: CustomColor.tekscolor,
+            width: 0.5,
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: CustomColor.tekscolor,
+              spreadRadius: 2,
+              offset: const Offset(0, 5),
+            ),
+          ],
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            if (icon != null)
+              Icon(icon, size: 36, color: CustomColor.greyawan,),
+            
+            if (level != null)
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(
+                  level!,
+                  (index) => const Icon(
+                    Icons.star,
+                    size: 20,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+
+            const SizedBox(height: 8,),
+
+            Text(title, style: const TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+            ),)
           ],
         ),
       ),
