@@ -1,6 +1,6 @@
 import 'package:dinacomapp/Components/custom_teks.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});

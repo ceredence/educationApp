@@ -1,5 +1,4 @@
 import 'package:dinacomapp/Components/custom_button.dart';
-import 'package:dinacomapp/Components/custom_color.dart';
 import 'package:flutter/material.dart';
 
 
