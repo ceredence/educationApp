@@ -1,6 +1,8 @@
 import 'package:dinacomapp/Components/custom_button.dart';
 import 'package:dinacomapp/Components/custom_teks.dart';
+import 'package:dinacomapp/routes/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class LevelPage extends StatelessWidget {
   const LevelPage({super.key});
@@ -16,37 +18,26 @@ class LevelPage extends StatelessWidget {
             children: [
               CustomText(myText: "Pilih level"),
 
-              const SizedBox(height: 24,),
+              const SizedBox(height: 24),
 
               GridView.count(
-                shrinkWrap: true, 
+                shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 crossAxisCount: 2,
                 mainAxisSpacing: 20,
                 crossAxisSpacing: 20,
                 childAspectRatio: 1,
-                children: [
-                  ButtonHome(
-                    onPressed: () {},
-                    level: 1,
-                    title: "Level 1",
-                  ),
-                  ButtonHome(
-                    onPressed: () {},
-                    level: 2,
-                    title: "Level 2",
-                  ),
-                  ButtonHome(
-                    onPressed: () {},
-                    level: 3,
-                    title: "Level 3",
-                  ),
-                  ButtonHome(
-                    onPressed: () {},
-                    level: 4,
-                    title: "Level 4",
-                  ),
-                ],
+                children: List.generate(4, (index) {
+                  final level = index + 1;
+
+                  return ButtonHome(
+                    onPressed: () {
+                      Get.toNamed(AppRoutes.taskPage);
+                    },
+                    title: "Level $level",
+                    level: level,
+                  );
+                }),
               ),
             ],
           ),

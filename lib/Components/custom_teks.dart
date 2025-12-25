@@ -8,6 +8,7 @@ class CustomText extends StatelessWidget {
   final FontWeight fontWeight;
   final TextAlign align;
   final String fontFamily; // ⬅️ TAMBAHAN
+  final String? controller;
 
   const CustomText({
     super.key,
@@ -17,6 +18,7 @@ class CustomText extends StatelessWidget {
     this.fontWeight = FontWeight.w400,
     this.align = TextAlign.start,
     this.fontFamily = 'Dela Gothic One', // ⬅️ DEFAULT
+    this.controller, 
   });
 
   @override

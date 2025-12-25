@@ -4,11 +4,15 @@ import 'package:flutter/material.dart';
 class CustomButton extends StatefulWidget {
   final String text;
   final VoidCallback onPressed;
+  final int? height;
+  final int? width;
 
   const CustomButton({
     super.key,
     required this.text,
     required this.onPressed,
+    this.height,
+    this.width,
   });
 
   @override
@@ -28,8 +32,8 @@ class _CustomButtonState extends State<CustomButton> {
       },
       onTapCancel: () => setState(() => _isPressed = false),
       child: SizedBox(
-        height: 86,
-        width: double.infinity,
+        height: widget.height?.toDouble() ?? 86,
+        width: widget.width?.toDouble(),
         child: Stack(
           children: [
            
