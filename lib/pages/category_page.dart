@@ -1,5 +1,6 @@
 import 'package:dinacomapp/Components/custom_button.dart';
 import 'package:dinacomapp/Components/custom_teks.dart';
+import 'package:dinacomapp/controller/task_controller.dart';
 import 'package:dinacomapp/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,6 +11,8 @@ class CategoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final taskController = Get.find<TaskController>();
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -19,7 +22,7 @@ class CategoryPage extends StatelessWidget {
             children: [
               CustomText(myText: "Pilih materi"),
 
-              const SizedBox(height: 24,),
+              const SizedBox(height: 24),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -28,6 +31,7 @@ class CategoryPage extends StatelessWidget {
                     child: ButtonHome(
                       onPressed: () {
                         Get.toNamed(AppRoutes.levelPage);
+                        taskController.taskType.value = 'baca';
                       },
                       icon: Icons.directions_run,
                       title: "Membaca",
@@ -38,7 +42,10 @@ class CategoryPage extends StatelessWidget {
 
                   Expanded(
                     child: ButtonHome(
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.toNamed(AppRoutes.levelPage);
+                        taskController.taskType.value = 'tulis';
+                      },
                       icon: Icons.description_outlined,
                       title: "Menulis",
                     ),
@@ -51,7 +58,16 @@ class CategoryPage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Expanded(child: ButtonHome(onPressed: () {}, icon: Icons.calculate_outlined, title: "Berhitung"),) 
+                  Expanded(
+                    child: ButtonHome(
+                      onPressed: () {
+                        Get.toNamed(AppRoutes.levelPage);
+                        taskController.taskType.value = 'hitung';
+                      },
+                      icon: Icons.calculate_outlined,
+                      title: "Berhitung",
+                    ),
+                  ),
                 ],
               ),
             ],
