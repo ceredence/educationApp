@@ -1,9 +1,12 @@
 import 'package:dinacomapp/Components/custom_button.dart';
+import 'package:dinacomapp/Components/custom_teks.dart';
+import 'package:dinacomapp/pages/login_page.dart';
+import 'package:dinacomapp/pages/register_page.dart';
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
 
 class StartPage extends StatelessWidget {
- StartPage({super.key});
+  StartPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +17,6 @@ class StartPage extends StatelessWidget {
       body: SafeArea(
         child: Stack(
           children: [
-            /// Top Card
             Positioned(
               top: 32,
               left: 24,
@@ -28,7 +30,6 @@ class StartPage extends StatelessWidget {
               ),
             ),
 
-            /// Blue Circle
             Positioned(
               top: size.height * 0.42,
               left: -size.width * 0.25,
@@ -42,7 +43,6 @@ class StartPage extends StatelessWidget {
               ),
             ),
 
-            /// Title
             Positioned(
               top: size.height * 0.52,
               left: 0,
@@ -59,21 +59,36 @@ class StartPage extends StatelessWidget {
               ),
             ),
 
-            /// Login Button
+            Positioned(
+              top: size.height * 0.8,
+              left: 0,
+              right: 0,
+              child: InkWell(
+                onTap: () {
+                  Get.to(() => const RegisterPage());
+                },
+                child: CustomText(
+                  myText: 'Create Account',
+                  align: TextAlign.center,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+
             Positioned(
               top: size.height * 0.65,
               left: 24,
               right: 24,
               child: CustomButton(
                 text: "Login",
-                
+
                 onPressed: () {
-                  debugPrint("Login ditekan");
+                  Get.offAll(() => LoginPage());
                 },
               ),
             ),
 
-            /// Terms
             Positioned(
               bottom: 24,
               left: 24,

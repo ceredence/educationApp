@@ -7,7 +7,7 @@ class CustomText extends StatelessWidget {
   final double fontSize;
   final FontWeight fontWeight;
   final TextAlign align;
-  final String fontFamily; // ⬅️ TAMBAHAN
+  final String fontFamily;  
 
   const CustomText({
     super.key,
@@ -16,7 +16,7 @@ class CustomText extends StatelessWidget {
     this.fontSize = 16,
     this.fontWeight = FontWeight.w400,
     this.align = TextAlign.start,
-    this.fontFamily = 'Dela Gothic One', // ⬅️ DEFAULT
+    this.fontFamily = 'Dela Gothic One', 
   });
 
   @override
@@ -30,7 +30,7 @@ class CustomText extends StatelessWidget {
           color: fontColor,
           fontSize: fontSize,
           fontWeight: fontWeight,
-          fontFamily: fontFamily, // ⬅️ PAKAI
+          fontFamily: fontFamily, 
         ),
       ),
     );
