@@ -20,7 +20,7 @@ class GeminiService {
         final data = json.decode(response.body);
         return data['data']['response'];
       } 
-      else {
+      else {  
         final error = json.decode(response.body);
         throw Exception(error['message'] ?? 'Failed to generate');
       }

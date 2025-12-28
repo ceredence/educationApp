@@ -45,7 +45,7 @@ class _CustomButtonState extends State<CustomButton> {
                 height: 53,
                 decoration: BoxDecoration(
                   color: const Color(0xFF9EC6E8),
-                  borderRadius: BorderRadius.circular(28),
+                  borderRadius: BorderRadius.circular(18),
                 ),
               ),
             ),
@@ -60,7 +60,7 @@ class _CustomButtonState extends State<CustomButton> {
                 height: 56,
                 decoration: BoxDecoration(
                   color: const Color(0xFFB9DBFB),
-                  borderRadius: BorderRadius.circular(28),
+                  borderRadius: BorderRadius.circular(18),
                   border: Border.all(
                     color: const Color(0xFF9EC6E8),
                     width: 3,
