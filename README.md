@@ -1,6 +1,6 @@
-# dinacomapp
+# Blippy
 
-A new Flutter project.
+An education app for autism elementary student.
 
 ## Getting Started
 

@@ -1,0 +1,123 @@
+import 'package:dinacomapp/Components/custom_button.dart';
+import 'package:dinacomapp/Components/custom_option.dart';
+import 'package:dinacomapp/Components/custom_teks.dart';
+import 'package:dinacomapp/controller/task_controller.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+
+class BacaTask extends StatelessWidget {
+  const BacaTask({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final taskController = Get.find<TaskController>();
+
+    return Container(
+      padding: EdgeInsets.all(10),
+      child: Column(
+        children: [
+          Obx(() {
+            if (taskController.imageUrl.value.isNotEmpty) {
+              return Image.network(
+                taskController.imageUrl.value,
+                height: 200,
+                fit: BoxFit.contain,
+              );
+            }
+            return const SizedBox();
+          }),
+
+          const SizedBox(height: 12),
+
+          Obx(() => CustomText(myText: taskController.question.value)),
+
+          const SizedBox(height: 12),
+
+          Obx(
+            () => Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: taskController.options
+                  .map((opt) => CustomOption(label: opt))
+                  .toList(),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class TulisTask extends StatelessWidget {
+  const TulisTask({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final taskController = Get.find<TaskController>();
+
+    return Container(
+      child: Column(
+        children: [
+          Obx(() {
+            if (taskController.imageUrl.value.isNotEmpty) {
+              return Image.network(
+                taskController.imageUrl.value,
+                height: 200,
+                fit: BoxFit.contain,
+              );
+            }
+            return const SizedBox();
+          }),
+
+          const SizedBox(height: 12),
+
+          Obx(() => CustomText(myText: taskController.question.value)),
+
+          const SizedBox(height: 12),
+
+          CustomButton(text: "Unggah Gambar", onPressed: () {}, height: 80, width: 300,),
+        ],
+      ),
+    );
+  }
+}
+
+class HitungTask extends StatelessWidget {
+  const HitungTask({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final taskController = Get.find<TaskController>();
+    return Container(
+      child: Column(
+        children: [
+          Obx(() {
+            if (taskController.imageUrl.value.isNotEmpty) {
+              return Image.network(
+                taskController.imageUrl.value,
+                height: 200,
+                fit: BoxFit.contain,
+              );
+            }
+            return const SizedBox();
+          }),
+
+          const SizedBox(height: 12),
+
+          Obx(() => CustomText(myText: taskController.question.value)),
+
+          const SizedBox(height: 12),
+
+          Obx(
+            () => Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: taskController.options
+                  .map((opt) => CustomOption(label: opt))
+                  .toList(),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
