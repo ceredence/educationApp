@@ -59,7 +59,7 @@ class _CustomButtonState extends State<CustomButton> {
               child: Container(
                 height: 56,
                 decoration: BoxDecoration(
-                  color: const Color(0xFFB9DBFB),
+                  color: const Color(0xFFCDE3F8),
                   borderRadius: BorderRadius.circular(18),
                   border: Border.all(
                     color: const Color(0xFF9EC6E8),
@@ -101,17 +101,17 @@ class ButtonHome extends StatelessWidget {
         width: 110,
         height: 110,
         decoration: BoxDecoration(
-          color: CustomColor.button,
+          color: CustomColor.btnhomebiru,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: CustomColor.tekscolor,
+            color: CustomColor.oubtnhomebiru,
             width: 0.5,
           ),
           boxShadow: [
             BoxShadow(
-              color: CustomColor.tekscolor,
-              spreadRadius: 2,
-              offset: const Offset(0, 5),
+              color:  CustomColor.oubtnhomebiru,
+              spreadRadius: 1,
+              offset: const Offset(0, 2),
             ),
           ],
         ),
@@ -119,7 +119,7 @@ class ButtonHome extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             if (icon != null)
-              Icon(icon, size: 36, color: CustomColor.greyawan,),
+              Icon(icon, size: 36, color: const Color.fromARGB(255, 0, 0, 0),),
             
             if (level != null)
               Row(

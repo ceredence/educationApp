@@ -11,7 +11,7 @@ class CategoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final taskController = Get.find<TaskController>();
+    final taskController = Get.put(TaskController());
 
     return Scaffold(
       body: SafeArea(
