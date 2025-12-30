@@ -5,7 +5,8 @@ import 'package:get/get.dart';
 
 class CustomOption extends StatelessWidget {
   final String label;
-  const CustomOption({super.key, required this.label});
+  final VoidCallback onPressed;
+  const CustomOption({super.key, required this.label, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,9 @@ class CustomOption extends StatelessWidget {
       final isSelected = taskController.selectedAnswer.value == label;
 
       return GestureDetector(
-        onTap: () => taskController.selectAnswer(label),
+        onTap: () {
+          onPressed();
+        },
         child: Container(
           width: 100,
           height: 80,

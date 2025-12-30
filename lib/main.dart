@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         // This is the theme of your application.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      initialRoute: AppRoutes.startPage,
+      initialRoute: AppRoutes.categoryPage,
       getPages: AppPages.pages,
     );
   }
