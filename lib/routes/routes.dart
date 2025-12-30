@@ -5,5 +5,4 @@ class AppRoutes {
   static const String levelPage = '/levelPage';
   static const String categoryPage = '/categoryPage';
   static const String taskPage = '/taskPage';
-  
 }
