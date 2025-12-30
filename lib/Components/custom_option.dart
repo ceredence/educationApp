@@ -17,7 +17,7 @@ class CustomOption extends StatelessWidget {
       return GestureDetector(
         onTap: () => taskController.selectAnswer(label),
         child: Container(
-          width: 80,
+          width: 100,
           height: 80,
           alignment: Alignment.center,
           decoration: BoxDecoration(

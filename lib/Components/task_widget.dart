@@ -14,35 +14,44 @@ class BacaTask extends StatelessWidget {
     final taskController = Get.find<TaskController>();
 
     return Container(
-      padding: EdgeInsets.all(10),
-      child: Column(
-        children: [
-          Obx(() {
-            if (taskController.imageUrl.value.isNotEmpty) {
-              return Image.network(
-                taskController.imageUrl.value,
-                height: 200,
-                fit: BoxFit.contain,
+      height: double.infinity,
+      padding: EdgeInsets.all(50),
+      alignment: Alignment.center,
+      child: Align(
+        alignment: Alignment.topCenter,
+        child: Column(
+          children: [
+            Obx(() {
+              if (taskController.imageUrl.value.isNotEmpty) {
+                return Image.network(
+                  taskController.imageUrl.value,
+                  height: 200,
+                  fit: BoxFit.contain,
+                );
+              }
+              return const SizedBox();
+            }),
+
+            const SizedBox(height: 20),
+
+            Obx(() => CustomText(myText: taskController.question.value, fontColor: Colors.black, fontSize: 30, fontWeight: FontWeight.bold,)),
+
+            const SizedBox(height: 80,),
+
+            Obx(() {
+              if (taskController.options.isEmpty) {
+                return const SizedBox();
+              }
+
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: taskController.options
+                    .map((opt) => CustomOption(label: opt))
+                    .toList(),
               );
-            }
-            return const SizedBox();
-          }),
-
-          const SizedBox(height: 12),
-
-          Obx(() => CustomText(myText: taskController.question.value)),
-
-          const SizedBox(height: 12),
-
-          Obx(
-            () => Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: taskController.options
-                  .map((opt) => CustomOption(label: opt))
-                  .toList(),
-            ),
-          ),
-        ],
+            }),
+          ],
+        ),
       ),
     );
   }
@@ -56,6 +65,8 @@ class TulisTask extends StatelessWidget {
     final taskController = Get.find<TaskController>();
 
     return Container(
+      padding: EdgeInsets.all(20),
+      alignment: Alignment.center,
       child: Column(
         children: [
           Obx(() {
@@ -69,13 +80,18 @@ class TulisTask extends StatelessWidget {
             return const SizedBox();
           }),
 
-          const SizedBox(height: 12),
+          const SizedBox(height: 20),
 
-          Obx(() => CustomText(myText: taskController.question.value)),
+          Obx(() => CustomText(myText: taskController.question.value, fontColor: Colors.black, fontSize: 30, fontWeight: FontWeight.bold,)),
 
-          const SizedBox(height: 12),
+          const SizedBox(height: 20),
 
-          CustomButton(text: "Unggah Gambar", onPressed: () {}, height: 80, width: 300,),
+          CustomButton(
+            text: "Unggah Gambar",
+            onPressed: () {},
+            height: 80,
+            width: 300,
+          ),
         ],
       ),
     );
@@ -104,7 +120,7 @@ class HitungTask extends StatelessWidget {
 
           const SizedBox(height: 12),
 
-          Obx(() => CustomText(myText: taskController.question.value)),
+          Obx(() => CustomText(myText: taskController.question.value, fontColor: Colors.black, fontSize: 30, fontWeight: FontWeight.bold,)),
 
           const SizedBox(height: 12),
 
