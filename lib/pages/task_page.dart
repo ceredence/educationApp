@@ -12,9 +12,10 @@ class TaskPage extends StatelessWidget {
 
     return Scaffold(
       body: SafeArea(
-        child: Row(
-          children: [
-            Obx(() {
+        child: Obx(() {
+          if (taskController.isLoading.value) {
+            return const Center(child: CircularProgressIndicator(),);
+          }
               switch (taskController.taskType.value) {
                 case 'baca':
                   return BacaTask();
@@ -25,10 +26,9 @@ class TaskPage extends StatelessWidget {
                 default:
                   return const SizedBox();
               }
-            }),
-          ],
+            }
+          ),
         ),
-      ),
-    );
+      );
   }
 }

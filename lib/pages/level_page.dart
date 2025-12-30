@@ -1,5 +1,6 @@
 import 'package:dinacomapp/Components/custom_button.dart';
 import 'package:dinacomapp/Components/custom_teks.dart';
+import 'package:dinacomapp/controller/task_controller.dart';
 import 'package:dinacomapp/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,6 +10,7 @@ class LevelPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final taskController = Get.find<TaskController>();
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -27,11 +29,15 @@ class LevelPage extends StatelessWidget {
                 mainAxisSpacing: 20,
                 crossAxisSpacing: 20,
                 childAspectRatio: 1,
-                children: List.generate(4, (index) {
+                children: List.generate(3, (index) {
                   final level = index + 1;
 
                   return ButtonHome(
-                    onPressed: () {
+                    onPressed: () async {
+                      await taskController.fetchQuestions(
+                        activityCode: taskController.taskType.value,
+                        level: _mapLevel(level),
+                      );
                       Get.toNamed(AppRoutes.taskPage);
                     },
                     title: "Level $level",
@@ -44,5 +50,18 @@ class LevelPage extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+String _mapLevel(int level) {
+  switch (level) {
+    case 1:
+      return 'low';
+    case 2:
+      return 'medium';
+    case 3:
+      return 'high';
+    default:
+      return 'low';
   }
 }
