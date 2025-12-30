@@ -34,9 +34,16 @@ class BacaTask extends StatelessWidget {
 
             const SizedBox(height: 20),
 
-            Obx(() => CustomText(myText: taskController.question.value, fontColor: Colors.black, fontSize: 30, fontWeight: FontWeight.bold,)),
+            Obx(
+              () => CustomText(
+                myText: taskController.question.value,
+                fontColor: Colors.black,
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
 
-            const SizedBox(height: 80,),
+            const SizedBox(height: 80),
 
             Obx(() {
               if (taskController.options.isEmpty) {
@@ -46,10 +53,33 @@ class BacaTask extends StatelessWidget {
               return Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: taskController.options
-                    .map((opt) => CustomOption(label: opt))
+                    .map(
+                      (opt) => CustomOption(
+                        label: opt,
+                        onPressed: () {
+                          taskController.selectedAnswer.value = opt;
+                          debugPrint(
+                            'selected answer: ' +
+                                taskController.selectedAnswer.value,
+                          );
+                        },
+                      ),
+                    )
                     .toList(),
               );
             }),
+
+            SizedBox(height: 50),
+
+            CustomButton(
+              text: "Submit",
+              onPressed: () {
+                taskController.selectAnswer(
+                  taskController.selectedAnswer.value,
+                );
+                taskController.submitAnswer();
+              },
+            ),
           ],
         ),
       ),
@@ -82,7 +112,14 @@ class TulisTask extends StatelessWidget {
 
           const SizedBox(height: 20),
 
-          Obx(() => CustomText(myText: taskController.question.value, fontColor: Colors.black, fontSize: 30, fontWeight: FontWeight.bold,)),
+          Obx(
+            () => CustomText(
+              myText: taskController.question.value,
+              fontColor: Colors.black,
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
 
           const SizedBox(height: 20),
 
@@ -120,7 +157,14 @@ class HitungTask extends StatelessWidget {
 
           const SizedBox(height: 12),
 
-          Obx(() => CustomText(myText: taskController.question.value, fontColor: Colors.black, fontSize: 30, fontWeight: FontWeight.bold,)),
+          Obx(
+            () => CustomText(
+              myText: taskController.question.value,
+              fontColor: Colors.black,
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
 
           const SizedBox(height: 12),
 
@@ -128,9 +172,30 @@ class HitungTask extends StatelessWidget {
             () => Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: taskController.options
-                  .map((opt) => CustomOption(label: opt))
+                  .map(
+                    (opt) => CustomOption(
+                      label: opt,
+                      onPressed: () {
+                        taskController.selectedAnswer.value = opt;
+                        debugPrint(
+                          'selected answer: ' +
+                              taskController.selectedAnswer.value,
+                        );
+                      },
+                    ),
+                  )
                   .toList(),
             ),
+          ),
+
+          SizedBox(height: 50),
+
+          CustomButton(
+            text: "Submit",
+            onPressed: () {
+              taskController.selectAnswer(taskController.selectedAnswer.value);
+              taskController.submitAnswer();
+            },
           ),
         ],
       ),
