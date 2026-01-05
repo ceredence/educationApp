@@ -1,5 +1,4 @@
 import 'package:dinacomapp/Components/admin_textfield.dart';
-import 'package:dinacomapp/Components/custom.textfild.dart';
 import 'package:dinacomapp/Components/custom_button.dart';
 import 'package:dinacomapp/Components/custom_dropdown.dart';
 import 'package:flutter/material.dart';
