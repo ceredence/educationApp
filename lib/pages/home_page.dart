@@ -3,7 +3,6 @@ import 'package:dinacomapp/controller/home_controller.dart';
 import 'package:dinacomapp/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:percent_indicator/flutter_percent_indicator.dart';
 
 class HomePage extends StatelessWidget {
@@ -16,6 +15,7 @@ final HomeController controller = Get.put(HomeController());
       body: Center(
         child: LinearPercentIndicator(
           lineHeight: 40,
+          
         ),
       
         ),

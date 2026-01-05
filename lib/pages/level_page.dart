@@ -11,6 +11,9 @@ class LevelPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final taskController = Get.find<TaskController>();
+    final args = Get.arguments as Map;
+    final int activityId = args['activityId'];
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -34,10 +37,19 @@ class LevelPage extends StatelessWidget {
 
                   return ButtonHome(
                     onPressed: () async {
+                      final selectedLevel = _mapLevel(level);
+                      taskController.level.value = selectedLevel;
+
+                      await taskController.startBatch(
+                        activityId: activityId,
+                        level: taskController.level.value,
+                      );
+
                       await taskController.fetchQuestions(
                         activityCode: taskController.taskType.value,
                         level: _mapLevel(level),
                       );
+
                       Get.toNamed(AppRoutes.taskPage);
                     },
                     title: "Level $level",

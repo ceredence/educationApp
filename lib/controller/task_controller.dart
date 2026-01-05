@@ -6,21 +6,33 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class TaskController extends GetxController {
+  // question
   final RxString question = "pertanyaan".obs;
   final RxString taskType = 'baca'.obs;
   final RxString imageUrl = ''.obs;
+  final RxInt questionId = 1.obs;
+
+  // submission
   final RxList<String> options = <String>[].obs;
   final RxString selectedAnswer = ''.obs;
-  final RxInt questionId = 1.obs;
   final RxString submissionImage = ''.obs;
   final RxString? correctAnswer = ''.obs;
 
+  // batch buat ngelompokin per sesi
+  final RxInt batchId = 0.obs;
+  final RxInt currentIndex = 0.obs;
+  final RxInt totalQuestions = 5.obs;
+  final RxString level = ''.obs;
+
+  // loading
   var isLoading = false.obs;
 
+  // pilih jawaban
   void selectAnswer(String value) {
     selectedAnswer.value = value;
   }
 
+  // fetching questions
   Future<void> fetchQuestions({
     required String activityCode,
     required String level,
@@ -52,7 +64,7 @@ class TaskController extends GetxController {
         correctAnswer?.value = q.answer ?? '';
         options.assignAll(q.options ?? []);
 
-        if (q.type == 'hitung' && q.options == null && q.type == 'baca') {
+        if (q.type == 'hitung' && q.options == null) {
           throw Exception('Soal hitung tapi options kosong');
         }
       } else {
@@ -68,12 +80,14 @@ class TaskController extends GetxController {
     }
   }
 
+  // submit answer
   Future<void> submitAnswer() async {
     final isCorrect = selectedAnswer.value == correctAnswer?.value.trim();
     final response = await http.post(
       Uri.parse('http://10.0.2.2:8000/api/submissions'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({
+        'submission_batch_id': batchId.value,
         'question_id': questionId.value,
         'answer': selectedAnswer.value,
         'predicted_answer': selectedAnswer.value,
@@ -90,6 +104,74 @@ class TaskController extends GetxController {
       print('Gagal kirim jawaban');
       debugPrint('ERROR MESSAGE: ${decoded['message']}');
       debugPrint('STATUS CODE: ${response.statusCode}');
+    }
+  }
+
+  void nextQuestion() {
+    selectedAnswer.value = '';
+    currentIndex.value++;
+
+    if (currentIndex.value < totalQuestions.value) {
+      fetchQuestions(activityCode: taskType.value, level: 'low');
+    } else {
+      finishBatch();
+    }
+  }
+
+  Future<void> startBatch({
+    required int activityId,
+    required String level,
+  }) async {
+    try {
+      debugPrint('🚀 Starting batch...');
+      debugPrint('Activity ID: $activityId');
+      debugPrint('Level: $level');
+      debugPrint('Total Questions: ${totalQuestions.value}');
+
+      final response = await http.post(
+        Uri.parse('http://10.0.2.2:8000/api/batches/start'),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({
+          'activity_id': activityId,
+          'level': level,
+          'total_questions': totalQuestions.value,
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        batchId.value = data['batch_id'];
+        currentIndex.value = 0;
+
+        debugPrint('BATCH STARTED: ${batchId.value}');
+      } else {
+        debugPrint('❌ Gagal start batch');
+        debugPrint('STATUS CODE: ${response.statusCode}');
+        debugPrint('ERROR: ${response.body}');
+      }
+    } catch (e) {
+      debugPrint('❌ Exception: $e');
+      Get.snackbar("Error", "Terjadi kesalahan: $e");
+    }
+  }
+
+  Future<void> finishBatch() async {
+    final response = await http.post(
+      Uri.parse('http://10.0.2.2:8000/api/batches/${batchId.value}/finish'),
+    );
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+
+      Get.offNamed(
+        '/behavior',
+        arguments: {
+          'correct': data['result']['correct_count'],
+          'total': data['result']['total_questions'],
+        },
+      );
+    } else {
+      debugPrint('❌ gagal finish batch');
     }
   }
 }

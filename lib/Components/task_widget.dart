@@ -195,6 +195,7 @@ class HitungTask extends StatelessWidget {
             onPressed: () {
               taskController.selectAnswer(taskController.selectedAnswer.value);
               taskController.submitAnswer();
+              taskController.finishBatch();
             },
           ),
         ],

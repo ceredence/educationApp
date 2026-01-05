@@ -11,8 +11,8 @@ class CategoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final taskController = Get.put(TaskController());
-
+    final taskController = Get.find<TaskController>();
+    
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -30,8 +30,11 @@ class CategoryPage extends StatelessWidget {
                   Expanded(
                     child: ButtonHome(
                       onPressed: () {
-                        Get.toNamed(AppRoutes.levelPage);
                         taskController.taskType.value = 'baca';
+                        Get.toNamed(
+                          AppRoutes.levelPage,
+                          arguments: {'activityId': 2},
+                        );
                       },
                       icon: Icons.directions_run,
                       title: "Membaca",
@@ -43,8 +46,11 @@ class CategoryPage extends StatelessWidget {
                   Expanded(
                     child: ButtonHome(
                       onPressed: () {
-                        Get.toNamed(AppRoutes.levelPage);
                         taskController.taskType.value = 'tulis';
+                        Get.toNamed(
+                          AppRoutes.levelPage,
+                          arguments: {'activityId': 3},
+                        );
                       },
                       icon: Icons.description_outlined,
                       title: "Menulis",
@@ -61,8 +67,11 @@ class CategoryPage extends StatelessWidget {
                   Expanded(
                     child: ButtonHome(
                       onPressed: () {
-                        Get.toNamed(AppRoutes.levelPage);
                         taskController.taskType.value = 'hitung';
+                        Get.toNamed(
+                          AppRoutes.levelPage,
+                          arguments: {'activityId': 1},
+                        );
                       },
                       icon: Icons.calculate_outlined,
                       title: "Berhitung",
