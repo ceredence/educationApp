@@ -1,3 +1,4 @@
+import 'package:dinacomapp/bindings/auth_binding.dart';
 import 'package:dinacomapp/bindings/soal_binding.dart';
 import 'package:dinacomapp/bindings/task_binding.dart';
 import 'package:dinacomapp/pages/admin_page.dart';
@@ -20,6 +21,6 @@ class AppPages {
     GetPage(name: AppRoutes.categoryPage, page: () => CategoryPage(), binding: TaskBinding()),
     GetPage(name: AppRoutes.taskPage, page: () => TaskPage(), binding: TaskBinding()),
     GetPage(name: AppRoutes.adminPage, page: () => AdminPage(),binding: SoalBinding()),
-    GetPage(name: AppRoutes.loginPage, page: () => LoginPage()),
+    GetPage(name: AppRoutes.loginPage, page: () => LoginPage(),binding: AuthBinding()),
   ];
 }

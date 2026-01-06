@@ -1,26 +1,36 @@
 {
   "project_info": {
-    "project_number": "551170968945",
-    "project_id": "flutterlatihanfirebase",
-    "storage_bucket": "flutterlatihanfirebase.firebasestorage.app"
+    "project_number": "713380984334",
+    "project_id": "dinacom-project-3f655",
+    "storage_bucket": "dinacom-project-3f655.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:551170968945:android:9af9ea39b8980003f5fad0",
+        "mobilesdk_app_id": "1:713380984334:android:89927d88b2950054d36e5f",
         "android_client_info": {
-          "package_name": "com.example.latihan_mobile"
+          "package_name": "com.example.dinacomapp"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "713380984334-j4kfjhd97k5egkt0p791j27sv2gu2a61.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyCe_EI8l4mf6gVn3x72YbRZyZTyL_stHag"
+          "current_key": "AIzaSyAWWBxQkMuknR4X32bez9lAPGK0DNaMNEk"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "713380984334-j4kfjhd97k5egkt0p791j27sv2gu2a61.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
