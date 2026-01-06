@@ -1,6 +1,7 @@
 import 'package:dinacomapp/Components/custom.textfild.dart';
 import 'package:dinacomapp/Components/custom_button.dart';
 import 'package:dinacomapp/Components/custom_teks.dart';
+import 'package:dinacomapp/controller/auth_controller.dart';
 import 'package:dinacomapp/controller/google_auth_controller.dart';
 import 'package:dinacomapp/pages/home_page.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ import 'package:get/get.dart';
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
   final controller = Get.find<GoogleAuthController>();
+  final loginc = Get.find<AuthController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,6 +38,7 @@ class LoginPage extends StatelessWidget {
                   CustomTextFild(
                     hintText: 'Username',
                     keyboardType: TextInputType.name,
+                    controller: loginc.usernameController,
                   ),
                   const SizedBox(height: 12),
 
@@ -43,15 +46,17 @@ class LoginPage extends StatelessWidget {
                     hintText: 'Password',
                     isPassword: true,
                     keyboardType: TextInputType.visiblePassword,
+                    controller: loginc.passwordController,
                   ),
                   const SizedBox(height: 24),
 
-                  CustomButton(
-                    text: 'Login',
-                    onPressed: () {
-                      Get.offAll(() => HomePage());
-                    },
+                   Obx(
+                    () => CustomButton(
+                      text: loginc.isLoading.value ? 'Loading...' : 'Login',
+                      onPressed: loginc.login,
+                    ),
                   ),
+
                   CustomButton(
                     text: 'Continue With Google',
                     onPressed: () {

@@ -1,11 +1,14 @@
 import 'package:dinacomapp/bindings/auth_binding.dart';
 import 'package:dinacomapp/bindings/soal_binding.dart';
+import 'package:dinacomapp/bindings/splash_binding.dart';
 import 'package:dinacomapp/bindings/task_binding.dart';
 import 'package:dinacomapp/pages/admin_page.dart';
 import 'package:dinacomapp/pages/category_page.dart';
 import 'package:dinacomapp/pages/home_page.dart';
 import 'package:dinacomapp/pages/level_page.dart';
 import 'package:dinacomapp/pages/login_page.dart';
+import 'package:dinacomapp/pages/register_page.dart';
+import 'package:dinacomapp/pages/splash_page.dart';
 import 'package:dinacomapp/pages/start_page.dart';
 import 'package:dinacomapp/pages/task_page.dart';
 import 'package:dinacomapp/pages/testing_page.dart';
@@ -21,6 +24,8 @@ class AppPages {
     GetPage(name: AppRoutes.categoryPage, page: () => CategoryPage(), binding: TaskBinding()),
     GetPage(name: AppRoutes.taskPage, page: () => TaskPage(), binding: TaskBinding()),
     GetPage(name: AppRoutes.adminPage, page: () => AdminPage(),binding: SoalBinding()),
-    GetPage(name: AppRoutes.loginPage, page: () => LoginPage(),binding: AuthBinding()),
+    GetPage(name: AppRoutes.loginPage, page: () => LoginPage(),bindings: [AuthBinding(),]),
+    GetPage(name: AppRoutes.splashPage, page: () => SplashPage(),binding: SplashBinding()),
+    GetPage(name: AppRoutes.registerPage, page: () => RegisterPage()),
   ];
 }

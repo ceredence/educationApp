@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:dinacomapp/controller/Splashscreen_controller.dart';
+
 class SplashPage extends StatelessWidget {
-SplashPage({super.key});
-  
-  final splash = Get.put(SplashscreenController());
+  SplashPage({super.key});
+
+  final splash = Get.find<SplashscreenController>();
 
   @override
   Widget build(BuildContext context) {
