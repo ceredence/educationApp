@@ -21,15 +21,10 @@ class GoogleAuthController extends GetxController {
     try {
       isGoogleLoading.value = true;
 
-      // 🔹 Login Google
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
-      if (googleUser == null) {
-        isGoogleLoading.value = false;
-        return;
-      }
+      if (googleUser == null) return;
 
-      final GoogleSignInAuthentication googleAuth =
-          await googleUser.authentication;
+      final googleAuth = await googleUser.authentication;
 
       final credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
@@ -38,21 +33,20 @@ class GoogleAuthController extends GetxController {
 
       await _auth.signInWithCredential(credential);
 
-      // 🔹 Ambil user dari Firebase
       final user = _auth.currentUser;
       if (user != null) {
-        // Simpan hanya email ke SharedPreferences
         final prefs = await SharedPreferences.getInstance();
+
+        // 🔑 WAJIB UNTUK SPLASH
+        await prefs.setString('login_type', 'google');
         await prefs.setString('email', user.email ?? '-');
 
-        // Snackbar sukses
         Get.snackbar(
           "Login Berhasil",
           "Email: ${user.email ?? '-'}",
           snackPosition: SnackPosition.BOTTOM,
         );
 
-        // 🔹 Arahkan ke halaman utama
         Get.offAllNamed(AppRoutes.homePage);
       }
     } catch (e) {
@@ -73,7 +67,6 @@ class GoogleAuthController extends GetxController {
     final prefs = await SharedPreferences.getInstance();
     await prefs.clear();
 
-    // 🔹 Kembali ke halaman login
     Get.offAllNamed(AppRoutes.loginPage);
   }
 }
