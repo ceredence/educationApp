@@ -74,10 +74,7 @@ class BacaTask extends StatelessWidget {
             CustomButton(
               text: "Submit",
               onPressed: () {
-                taskController.selectAnswer(
-                  taskController.selectedAnswer.value,
-                );
-                taskController.submitAnswer();
+                taskController.submitAndNext();
               },
             ),
           ],
@@ -124,10 +121,10 @@ class TulisTask extends StatelessWidget {
           const SizedBox(height: 20),
 
           CustomButton(
-            text: "Unggah Gambar",
-            onPressed: () {},
-            height: 80,
-            width: 300,
+            text: "Submit",
+            onPressed: () {
+              taskController.submitAndNext();
+            },
           ),
         ],
       ),
@@ -193,9 +190,7 @@ class HitungTask extends StatelessWidget {
           CustomButton(
             text: "Submit",
             onPressed: () {
-              taskController.selectAnswer(taskController.selectedAnswer.value);
-              taskController.submitAnswer();
-              taskController.finishBatch();
+              taskController.submitAndNext();
             },
           ),
         ],

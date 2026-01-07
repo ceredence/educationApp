@@ -1,9 +1,11 @@
+import 'package:dinacomapp/bindings/summary_binding.dart';
 import 'package:dinacomapp/bindings/task_binding.dart';
 import 'package:dinacomapp/pages/admin_page.dart';
 import 'package:dinacomapp/pages/category_page.dart';
 import 'package:dinacomapp/pages/home_page.dart';
 import 'package:dinacomapp/pages/level_page.dart';
 import 'package:dinacomapp/pages/start_page.dart';
+import 'package:dinacomapp/pages/summary_page.dart';
 import 'package:dinacomapp/pages/task_page.dart';
 import 'package:dinacomapp/pages/testing_page.dart';
 import 'package:dinacomapp/routes/routes.dart';
@@ -18,5 +20,6 @@ class AppPages {
     GetPage(name: AppRoutes.categoryPage, page: () => CategoryPage(), binding: TaskBinding()),
     GetPage(name: AppRoutes.taskPage, page: () => TaskPage(), binding: TaskBinding()),
     GetPage(name: AppRoutes.adminPage, page: () => AdminPage()),
+    GetPage(name: AppRoutes.summaryPage, page: () => SummaryPage(), binding: SummaryBinding()),
   ];
 }
