@@ -1,25 +1,34 @@
-
 import 'package:dinacomapp/routes/routes.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SplashscreenController extends GetxController{
+class SplashscreenController extends GetxController {
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     checkLogin();
   }
 
-  void checkLogin() async {
+  Future<void> checkLogin() async {
+    await Future.delayed(const Duration(seconds: 3));
+
     final prefs = await SharedPreferences.getInstance();
-    await Future.delayed(Duration(seconds: 3));
-    if (prefs.getString("username") != null) {
-      
+    final loginType = prefs.getString('login_type');
+
+    // 🔹 GOOGLE USER
+    if (loginType == 'google' && FirebaseAuth.instance.currentUser != null) {
       Get.offAllNamed(AppRoutes.homePage);
-    } else {
-      
-      Get.offAllNamed(AppRoutes.startPage);
+      return;
     }
+
+    // 🔹 USER BIASA
+    if (loginType == 'manual' && prefs.getBool('is_logged_in') == true) {
+      Get.offAllNamed(AppRoutes.homePage);
+      return;
+    }
+
+    // 🔹 BELUM LOGIN
+    Get.offAllNamed(AppRoutes.startPage);
   }
 }

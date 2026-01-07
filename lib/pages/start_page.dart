@@ -2,6 +2,7 @@ import 'package:dinacomapp/Components/custom_button.dart';
 import 'package:dinacomapp/Components/custom_teks.dart';
 import 'package:dinacomapp/pages/login_page.dart';
 import 'package:dinacomapp/pages/register_page.dart';
+import 'package:dinacomapp/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -65,7 +66,7 @@ class StartPage extends StatelessWidget {
               right: 0,
               child: InkWell(
                 onTap: () {
-                  Get.to(() => const RegisterPage());
+                  Get.toNamed(AppRoutes.registerPage);
                 },
                 child: CustomText(
                   myText: 'Create Account',
@@ -84,7 +85,7 @@ class StartPage extends StatelessWidget {
                 text: "Login",
 
                 onPressed: () {
-                  Get.offAll(() => LoginPage());
+                  Get.offAllNamed(AppRoutes.loginPage);
                 },
               ),
             ),
