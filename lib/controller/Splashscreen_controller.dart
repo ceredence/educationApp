@@ -24,7 +24,7 @@ class SplashscreenController extends GetxController {
 
     // 🔹 USER BIASA
     if (loginType == 'manual' && prefs.getBool('is_logged_in') == true) {
-      Get.offAllNamed(AppRoutes.homePage);
+      Get.offAllNamed(AppRoutes.taskPage);
       return;
     }
 
