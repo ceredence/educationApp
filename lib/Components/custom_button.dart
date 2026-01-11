@@ -1,4 +1,3 @@
-import 'package:dinacomapp/Components/custom_color.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatefulWidget {
@@ -90,28 +89,46 @@ class ButtonHome extends StatelessWidget {
   final String title;
   final VoidCallback onPressed;
 
-  const ButtonHome({super.key, required this.onPressed, this.icon, required this.title, this.level});
+  // warna-warna
+  final Color backgroundColor;
+  final Color borderColor;
+  final Color iconColor;
+  final Color textColor;
+  final Color shadowColor;
+
+  const ButtonHome({
+    super.key,
+    required this.onPressed,
+    required this.title,
+    this.icon,
+    this.level,
+    this.backgroundColor = const Color(0xFFFFD6F5),
+    this.borderColor = const Color(0xFFE68ACB),
+    this.iconColor = const Color(0xFF2C3E50),
+    this.textColor = Colors.black,
+    this.shadowColor = const Color(0xFFE68ACB),
+  });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      borderRadius: BorderRadius.circular(16),
+      borderRadius: BorderRadius.circular(20),
       onTap: onPressed,
       child: Container(
         width: 110,
         height: 150,
         decoration: BoxDecoration(
-          color: CustomColor.btnhomebiru,
-          borderRadius: BorderRadius.circular(16),
+          color: backgroundColor,
+          borderRadius: BorderRadius.circular(20),
           border: Border.all(
-            color: CustomColor.oubtnhomebiru,
-            width: 0.5,
+            color: borderColor,
+            width: 2,
           ),
           boxShadow: [
             BoxShadow(
-              color:  CustomColor.oubtnhomebiru,
-              spreadRadius: 1,
-              offset: const Offset(0, 2),
+              color: shadowColor.withOpacity(0.6),
+              offset: const Offset(0, 4),
+              blurRadius: 0,
             ),
           ],
         ),
@@ -119,27 +136,38 @@ class ButtonHome extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             if (icon != null)
-              Icon(icon, size: 36, color: const Color.fromARGB(255, 0, 0, 0),),
-            
-            if (level != null)
+              Icon(
+                icon,
+                size: 40,
+                color: iconColor,
+              ),
+
+            if (level != null) ...[
+              const SizedBox(height: 6),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: List.generate(
                   level!,
-                  (index) => const Icon(
-                    Icons.star,
-                    size: 20,
-                    color: Colors.black,
+                  (index) => Icon(
+                    Icons.star_rounded,
+                    size: 18,
+                    color: iconColor,
                   ),
                 ),
               ),
+            ],
 
-            const SizedBox(height: 8,),
+            const SizedBox(height: 10),
 
-            Text(title, style: const TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
-            ),)
+            Text(
+              title,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+                color: textColor,
+              ),
+            ),
           ],
         ),
       ),

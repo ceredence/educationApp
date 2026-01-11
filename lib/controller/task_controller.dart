@@ -110,6 +110,14 @@ class TaskController extends GetxController {
     required String level,
   }) async {
     try {
+      batchId.value = 0;
+      currentIndex.value = 0;
+      questionIds.clear();
+      selectedAnswer.value = '';
+      submissionImage.value = '';
+      question.value = '';
+      options.clear();
+
       debugPrint('🚀 Starting batch...');
       debugPrint('Activity ID: $activityId');
       debugPrint('Level: $level');
@@ -151,20 +159,22 @@ class TaskController extends GetxController {
 
   Future<void> finishBatch() async {
     final response = await http.post(
-      Uri.parse('http://10.0.2.2:8000/api/batches/${batchId.value}/finish'),
+      Uri.parse(
+        'http://10.0.2.2:8000/api/batches/${batchId.value}/finish',
+      ),
     );
 
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
 
       Get.offNamed(
-      AppRoutes.summaryPage,
-      arguments: {
-        'correct': data['correct'],
-        'wrong': data['wrong'],
-        'message': data['message'],
-      },
-    );
+        AppRoutes.summaryPage,
+        arguments: {
+          'correct': data['correct'],
+          'wrong': data['wrong'],
+          'message': data['message'],
+        },
+      );
     } else {
       debugPrint('❌ gagal finish batch');
       debugPrint('STATUS CODE: ${response.statusCode}');

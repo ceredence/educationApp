@@ -1,6 +1,4 @@
-import 'package:dinacomapp/Components/custom_button.dart';
 import 'package:dinacomapp/controller/home_controller.dart';
-import 'package:dinacomapp/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/flutter_percent_indicator.dart';
