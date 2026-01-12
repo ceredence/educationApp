@@ -3,6 +3,7 @@ import 'package:dinacomapp/model/question_model.dart';
 import 'package:dinacomapp/routes/routes.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 
 class TaskController extends GetxController {
@@ -25,8 +26,14 @@ class TaskController extends GetxController {
   final RxString level = ''.obs;
   final RxList<int> questionIds = <int>[].obs;
 
-  // loading
+  // other
   var isLoading = false.obs;
+  final RxDouble progress = 0.0.obs;
+  final box = GetStorage();
+  String today() {
+    final now = DateTime.now();
+    return "${now.year}-${now.month}-${now.day}";
+  }
 
   @override
   void onInit() {
@@ -159,9 +166,7 @@ class TaskController extends GetxController {
 
   Future<void> finishBatch() async {
     final response = await http.post(
-      Uri.parse(
-        'http://10.0.2.2:8000/api/batches/${batchId.value}/finish',
-      ),
+      Uri.parse('http://10.0.2.2:8000/api/batches/${batchId.value}/finish'),
     );
 
     if (response.statusCode == 200) {
@@ -179,6 +184,17 @@ class TaskController extends GetxController {
       debugPrint('❌ gagal finish batch');
       debugPrint('STATUS CODE: ${response.statusCode}');
       debugPrint('ERROR: ${response.body}');
+    }
+  }
+
+  void checkDailyReset() {
+    final lastDate = box.read('lastProgressDate');
+    final nowDate = today();
+
+    if (lastDate != nowDate) {
+      // hari baru, reset jiwa & progress
+      progress.value = 0.0;
+      box.write('lastProgressDate', nowDate);
     }
   }
 
@@ -203,6 +219,15 @@ class TaskController extends GetxController {
       await fetchQuestionByIndex();
     } else {
       await finishBatch();
+
+      checkDailyReset();
+
+      if (progress.value < 1.0) {
+        progress.value += 0.2;
+        if (progress.value > 1.0) {
+          progress.value = 1.0;
+        }
+      }
     }
   }
 }

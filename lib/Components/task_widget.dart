@@ -72,7 +72,7 @@ class BacaTask extends StatelessWidget {
             SizedBox(height: 50),
 
             CustomButton(
-              text: "Submit",
+              text: "Lanjut",
               onPressed: () {
                 taskController.submitAndNext();
               },
@@ -121,7 +121,7 @@ class TulisTask extends StatelessWidget {
           const SizedBox(height: 20),
 
           CustomButton(
-            text: "Submit",
+            text: "Lanjut",
             onPressed: () {
               taskController.submitAndNext();
             },
@@ -188,7 +188,7 @@ class HitungTask extends StatelessWidget {
           SizedBox(height: 50),
 
           CustomButton(
-            text: "Submit",
+            text: "Lanjut",
             onPressed: () {
               taskController.submitAndNext();
             },

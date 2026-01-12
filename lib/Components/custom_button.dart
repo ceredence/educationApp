@@ -115,7 +115,7 @@ class ButtonHome extends StatelessWidget {
       borderRadius: BorderRadius.circular(20),
       onTap: onPressed,
       child: Container(
-        width: 110,
+        width: 150,
         height: 150,
         decoration: BoxDecoration(
           color: backgroundColor,

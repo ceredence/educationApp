@@ -21,7 +21,7 @@ class AppPages {
   static final pages = [
     GetPage(name: AppRoutes.testingPage, page: () => TestingPage()),
     GetPage(name: AppRoutes.startPage, page: () => StartPage()),
-    GetPage(name: AppRoutes.homePage, page: () => HomePage()),
+    GetPage(name: AppRoutes.homePage, page: () => HomePage(), binding: TaskBinding()),
     GetPage(name: AppRoutes.levelPage, page: () => LevelPage(), binding: TaskBinding()), 
     GetPage(name: AppRoutes.categoryPage, page: () => CategoryPage(), binding: TaskBinding()),
     GetPage(name: AppRoutes.taskPage, page: () => TaskPage(), binding: TaskBinding()),

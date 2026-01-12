@@ -1,4 +1,6 @@
+import 'package:dinacomapp/Components/custom_button.dart';
 import 'package:dinacomapp/controller/summary_controller.dart';
+import 'package:dinacomapp/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -49,35 +51,15 @@ class SummaryPage extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: 40),
+              const Spacer(),
 
-              // LOCKED STAT CARD
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 24),
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: const Color(0xFFEAEAEA),
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: Column(
-                  children: const [
-                    Icon(
-                      Icons.lock_outline,
-                      size: 36,
-                      color: Color(0xFF777777),
-                    ),
-                    SizedBox(height: 12),
-                    Text(
-                      "Kerjakan beberapa soal lagi\n"
-                      "untuk melihat statistik belajarmu",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 16,
-                        height: 1.5,
-                        color: Color(0xFF666666),
-                      ),
-                    ),
-                  ],
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 32),
+                child: CustomButton(
+                  text: "Kembali",
+                  onPressed: () {
+                    Get.offAllNamed(AppRoutes.homePage);
+                  },
                 ),
               ),
             ],
