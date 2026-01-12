@@ -7,6 +7,7 @@ import 'package:dinacomapp/pages/category_page.dart';
 import 'package:dinacomapp/pages/home_page.dart';
 import 'package:dinacomapp/pages/level_page.dart';
 import 'package:dinacomapp/pages/login_page.dart';
+import 'package:dinacomapp/pages/profile_page.dart';
 import 'package:dinacomapp/pages/register_page.dart';
 import 'package:dinacomapp/pages/splash_page.dart';
 import 'package:dinacomapp/pages/start_page.dart';
@@ -26,6 +27,8 @@ class AppPages {
     GetPage(name: AppRoutes.adminPage, page: () => AdminPage(),binding: SoalBinding()),
     GetPage(name: AppRoutes.loginPage, page: () => LoginPage(),bindings: [AuthBinding(),]),
     GetPage(name: AppRoutes.splashPage, page: () => SplashPage(),binding: SplashBinding()),
-    GetPage(name: AppRoutes.registerPage, page: () => RegisterPage()),
+    GetPage(name: AppRoutes.registerPage, page: () => RegisterPage(),bindings: [AuthBinding()]),
+    GetPage(name: AppRoutes.summaryPage, page: () => RegisterPage()),
+    GetPage(name: AppRoutes.profilePage, page: () => ProfilePage()),
   ];
 }

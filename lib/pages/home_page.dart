@@ -1,5 +1,7 @@
+import 'package:dinacomapp/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -110,7 +112,7 @@ class HomePage extends StatelessWidget {
                   );
                 }),
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -181,10 +183,7 @@ class HomePage extends StatelessWidget {
                 const SizedBox(height: 4),
                 const Text(
                   'Male, 16 years old',
-                  style: TextStyle(
-                    fontSize: 13,
-                    color: Color(0xFF4A4A4A),
-                  ),
+                  style: TextStyle(fontSize: 13, color: Color(0xFF4A4A4A)),
                 ),
                 const SizedBox(height: 10),
                 const Text(
@@ -197,7 +196,9 @@ class HomePage extends StatelessWidget {
                 ),
                 const SizedBox(height: 12),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.toNamed(AppRoutes.profilePage);
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,
                     foregroundColor: const Color(0xFF2C2C2C),
@@ -213,15 +214,12 @@ class HomePage extends StatelessWidget {
                   ),
                   child: const Text(
                     'Ubah Profil',
-                    style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w600,
-                    ),
+                    style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
                   ),
-                )
+                ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );
@@ -287,7 +285,7 @@ class HomePage extends StatelessWidget {
               color: Colors.white,
             ),
           ),
-        )
+        ),
       ],
     );
   }
@@ -340,11 +338,7 @@ class HomePage extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
-            icon,      
-            size: 42,
-            color: const Color(0xFF2C2C2C),
-          ),
+          Icon(icon, size: 42, color: const Color(0xFF2C2C2C)),
           const SizedBox(height: 10),
           Text(
             label,
@@ -354,7 +348,7 @@ class HomePage extends StatelessWidget {
               color: Color(0xFF2C2C2C),
               letterSpacing: -0.2,
             ),
-          )
+          ),
         ],
       ),
     );
