@@ -40,17 +40,34 @@ class LevelPage extends StatelessWidget {
                       final selectedLevel = _mapLevel(level);
                       taskController.level.value = selectedLevel;
 
-                      await taskController.startBatch(
-                        activityId: activityId,
-                        level: taskController.level.value,
-                      );
+                      taskController.isLoading.value = true;
 
-                      await taskController.fetchQuestions(
-                        activityCode: taskController.taskType.value,
-                        level: _mapLevel(level),
-                      );
+                      try {
+                        await taskController.startBatch(
+                          activityId: activityId,
+                          level: selectedLevel,
+                        );
 
-                      Get.toNamed(AppRoutes.taskPage);
+                        if (taskController.batchId.value > 0 &&
+                            taskController.questionIds.isNotEmpty) {
+                          // Navigasi ke task page
+                          Get.toNamed(AppRoutes.taskPage);
+                        } else {
+                          Get.snackbar(
+                            "Error",
+                            "Gagal memulai sesi",
+                            snackPosition: SnackPosition.BOTTOM,
+                          );
+                        }
+                      } catch (e) {
+                        Get.snackbar(
+                          "Error",
+                          "Terjadi kesalahan: $e",
+                          snackPosition: SnackPosition.BOTTOM,
+                        );
+                      } finally {
+                        taskController.isLoading.value = false;
+                      }
                     },
                     title: "Level $level",
                     level: level,

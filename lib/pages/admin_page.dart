@@ -6,7 +6,6 @@ import 'package:dinacomapp/model/admin_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:http/http.dart';
 
 class AdminPage extends StatefulWidget {
   const AdminPage({super.key});

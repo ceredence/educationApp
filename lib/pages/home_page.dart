@@ -1,3 +1,5 @@
+import 'package:dinacomapp/controller/task_controller.dart';
+import 'package:dinacomapp/routes/routes.dart';
 import 'package:dinacomapp/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -6,28 +8,31 @@ import 'package:http/http.dart';
 class HomePage extends StatelessWidget {
   HomePage({super.key});
 
-  final RxDouble progress = 0.6.obs;
+  final taskController = Get.find<TaskController>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _header(),
-              const SizedBox(height: 20),
-              _progressBar(),
-              const SizedBox(height: 20),
-              _profileCard(),
-              const SizedBox(height: 30),
-              _playSection(),
-              const SizedBox(height: 30),
-              _bottomMenu(),
-            ],
+      body: Container(
+        padding: EdgeInsets.all(20),
+        child: SafeArea(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _header(),
+                const SizedBox(height: 20),
+                _progressBar(),
+                const SizedBox(height: 20),
+                _profileCard(),
+                const SizedBox(height: 30),
+                _playSection(),
+                const SizedBox(height: 30),
+                _bottomMenu(),
+              ],
+            ),
           ),
         ),
       ),
@@ -73,7 +78,7 @@ class HomePage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(6.0),
               child: FractionallySizedBox(
-                widthFactor: progress.value,
+                widthFactor: taskController.progress.value,
                 child: Container(
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -94,7 +99,7 @@ class HomePage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: List.generate(5, (index) {
-                  final active = progress.value >= (index + 1) / 5;
+                  final active = taskController.progress.value >= (index + 1) / 5;
                   return Container(
                     width: 20,
                     height: 20,
@@ -230,37 +235,29 @@ class HomePage extends StatelessWidget {
     return Row(
       children: [
         Transform.rotate(
-          angle: -0.05,
+          angle: -0.00,
           child: Container(
-            width: 140,
-            height: 180,
+            width: 450,
+            height: 500,
             decoration: BoxDecoration(
-              color: const Color(0xFFF5F5F5),
+              color: const Color.fromARGB(255, 255, 255, 255),
               borderRadius: BorderRadius.circular(20),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.08),
-                  blurRadius: 8,
-                  offset: const Offset(0, 3),
-                ),
-              ],
+              
             ),
-            child: const Center(
-              child: Text(
-                'icon\nfull body',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Color(0xFF999999),
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                ),
+            child: Center(
+              child: Image.asset(
+                'assets/maskot_play.png',
+                width: 500,
+                fit: BoxFit.contain,
               ),
             ),
           ),
         ),
         const SizedBox(width: 20),
         GestureDetector(
-          onTap: () {},
+          onTap: () {
+            Get.toNamed(AppRoutes.categoryPage);
+          },
           child: Container(
             width: 80,
             height: 80,
