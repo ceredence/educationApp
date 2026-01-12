@@ -1,5 +1,4 @@
 import 'package:dinacomapp/Components/custom_button.dart';
-import 'package:dinacomapp/Components/custom_teks.dart';
 import 'package:dinacomapp/controller/task_controller.dart';
 import 'package:dinacomapp/routes/routes.dart';
 import 'package:flutter/material.dart';
@@ -100,7 +99,7 @@ class CategoryPage extends StatelessWidget {
               CustomButton(
                 text: 'Kembali',
                 onPressed: () {
-                  Get.back();
+                  Get.offAllNamed(AppRoutes.homePage);
                 },
               ),
               

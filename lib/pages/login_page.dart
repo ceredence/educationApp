@@ -3,7 +3,6 @@ import 'package:dinacomapp/Components/custom_button.dart';
 import 'package:dinacomapp/Components/custom_teks.dart';
 import 'package:dinacomapp/controller/auth_controller.dart';
 import 'package:dinacomapp/controller/google_auth_controller.dart';
-import 'package:dinacomapp/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
