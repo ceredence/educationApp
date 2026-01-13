@@ -19,7 +19,7 @@ class _AdminPageState extends State<AdminPage> {
 
   final controller = Get.find<SoalController>();
 
-  String question = "";
+  String question = "";//
   String optionA = "";
   String optionB = "";
   String optionC = "";
