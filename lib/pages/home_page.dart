@@ -29,7 +29,7 @@ class HomePage extends StatelessWidget {
                 _profileCard(),
                 const SizedBox(height: 30),
                 _playSection(),
-                const SizedBox(height: 30),
+                const SizedBox(height: 80),
                 _bottomMenu(),
               ],
             ),
@@ -99,7 +99,8 @@ class HomePage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: List.generate(5, (index) {
-                  final active = taskController.progress.value >= (index + 1) / 5;
+                  final active =
+                      taskController.progress.value >= (index + 1) / 5;
                   return Container(
                     width: 20,
                     height: 20,
@@ -242,12 +243,11 @@ class HomePage extends StatelessWidget {
             decoration: BoxDecoration(
               color: const Color.fromARGB(255, 255, 255, 255),
               borderRadius: BorderRadius.circular(20),
-              
             ),
             child: Center(
               child: Image.asset(
                 'assets/maskot_play.png',
-                width: 500,
+                width: 300,
                 fit: BoxFit.contain,
               ),
             ),

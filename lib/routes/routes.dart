@@ -11,4 +11,5 @@ class AppRoutes {
   static const String registerPage = '/registerPage';
   static const String summaryPage = '/summaryPage';
   static const String profilePage = '/profilePage';
+  static const String statistikPage = '/statistikPage';
 }
