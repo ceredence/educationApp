@@ -57,7 +57,7 @@ class RegisterPage extends StatelessWidget {
                   const SizedBox(height: 24),
 
                   CustomButton(
-                    text: 'Login',
+                    text: 'register',
                     onPressed: () {
                       Get.offAll(() => LoginPage());
                     },
