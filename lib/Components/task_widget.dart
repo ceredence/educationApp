@@ -17,115 +17,60 @@ class BacaTask extends StatelessWidget {
       height: double.infinity,
       padding: EdgeInsets.all(50),
       alignment: Alignment.center,
-      child: Align(
-        alignment: Alignment.topCenter,
-        child: Column(
-          children: [
-            Obx(() {
-              if (taskController.imageUrl.value.isNotEmpty) {
-                return Image.network(
-                  taskController.imageUrl.value,
-                  height: 200,
-                  fit: BoxFit.contain,
-                );
-              }
-              return const SizedBox();
-            }),
-
-            const SizedBox(height: 20),
-
-            Obx(
-              () => CustomText(
-                myText: taskController.question.value,
-                fontColor: Colors.black,
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-
-            const SizedBox(height: 80),
-
-            Obx(() {
-              if (taskController.options.isEmpty) {
-                return const SizedBox();
-              }
-
-              return Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: taskController.options
-                    .map(
-                      (opt) => CustomOption(
-                        label: opt,
-                        onPressed: () {
-                          taskController.selectedAnswer.value = opt;
-                          debugPrint(
-                            'selected answer: ' +
-                                taskController.selectedAnswer.value,
-                          );
-                        },
-                      ),
-                    )
-                    .toList(),
-              );
-            }),
-
-            SizedBox(height: 50),
-
-            CustomButton(
-              text: "Lanjut",
-              onPressed: () {
-                taskController.submitAndNext();
-              },
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class TulisTask extends StatelessWidget {
-  const TulisTask({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final taskController = Get.find<TaskController>();
-
-    return Container(
-      padding: EdgeInsets.all(20),
-      alignment: Alignment.center,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          // Image jika ada
           Obx(() {
             if (taskController.imageUrl.value.isNotEmpty) {
-              return Image.network(
-                taskController.imageUrl.value,
-                height: 200,
-                fit: BoxFit.contain,
+              return Column(
+                children: [
+                  Image.network(
+                    taskController.imageUrl.value,
+                    height: 150,
+                    fit: BoxFit.contain,
+                  ),
+                  const SizedBox(height: 30),
+                ],
               );
             }
             return const SizedBox();
           }),
 
-          const SizedBox(height: 20),
+          // Question text
+          Obx(() => CustomText(
+                myText: taskController.question.value,
+                fontColor: Colors.black,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              )),
 
-          Obx(
-            () => CustomText(
-              myText: taskController.question.value,
-              fontColor: Colors.black,
-              fontSize: 30,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+          const SizedBox(height: 80),
 
-          const SizedBox(height: 20),
+          // Options buttons (vertical layout)
+          Obx(() {
+            if (taskController.options.isEmpty) {
+              return const SizedBox();
+            }
 
-          CustomButton(
-            text: "Lanjut",
-            onPressed: () {
-              taskController.submitAndNext();
-            },
-          ),
+            return Column(
+              children: taskController.options.map((opt) {
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 15),
+                  child: SizedBox(
+                    width: 300,
+                    child: CustomButton(
+                      text: opt,
+                      onPressed: () {
+                        taskController.selectedAnswer.value = opt;
+                        taskController.submitAndNext();
+                      },
+                    ),
+                  ),
+                );
+              }).toList(),
+            );
+          }),
         ],
       ),
     );
@@ -138,61 +83,75 @@ class HitungTask extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final taskController = Get.find<TaskController>();
+    
     return Container(
+      height: double.infinity,
+      padding: EdgeInsets.all(50),
+      alignment: Alignment.center,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          // Progress indicator
+          Obx(() => CustomText(
+                myText: '${taskController.currentIndex.value + 1} / ${taskController.totalQuestions.value}',
+                fontColor: Colors.grey,
+                fontSize: 16,
+                fontWeight: FontWeight.normal,
+              )),
+
+          const SizedBox(height: 30),
+
+          // Question text
+          Obx(() => CustomText(
+                myText: taskController.question.value,
+                fontColor: Colors.black,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              )),
+
+          const SizedBox(height: 40),
+
+          // Image
           Obx(() {
             if (taskController.imageUrl.value.isNotEmpty) {
-              return Image.network(
-                taskController.imageUrl.value,
-                height: 200,
-                fit: BoxFit.contain,
+              return Column(
+                children: [
+                  Image.network(
+                    taskController.imageUrl.value,
+                    height: 150,
+                    fit: BoxFit.contain,
+                  ),
+                  const SizedBox(height: 60),
+                ],
               );
             }
             return const SizedBox();
           }),
 
-          const SizedBox(height: 12),
+          // Options buttons (vertical layout)
+          Obx(() {
+            if (taskController.options.isEmpty) {
+              return const SizedBox();
+            }
 
-          Obx(
-            () => CustomText(
-              myText: taskController.question.value,
-              fontColor: Colors.black,
-              fontSize: 30,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-
-          const SizedBox(height: 12),
-
-          Obx(
-            () => Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: taskController.options
-                  .map(
-                    (opt) => CustomOption(
-                      label: opt,
+            return Column(
+              children: taskController.options.map((opt) {
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 15),
+                  child: SizedBox(
+                    width: 300,
+                    child: CustomButton(
+                      text: opt,
                       onPressed: () {
                         taskController.selectedAnswer.value = opt;
-                        debugPrint(
-                          'selected answer: ' +
-                              taskController.selectedAnswer.value,
-                        );
+                        taskController.submitAndNext();
                       },
                     ),
-                  )
-                  .toList(),
-            ),
-          ),
-
-          SizedBox(height: 50),
-
-          CustomButton(
-            text: "Lanjut",
-            onPressed: () {
-              taskController.submitAndNext();
-            },
-          ),
+                  ),
+                );
+              }).toList(),
+            );
+          }),
         ],
       ),
     );

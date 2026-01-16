@@ -65,23 +65,6 @@ class CategoryPage extends StatelessWidget {
                   const SizedBox(width: 20),
 
                   ButtonHome(
-                    onPressed: () {
-                      taskController.taskType.value = 'tulis';
-                      Get.toNamed(
-                        AppRoutes.levelPage,
-                        arguments: {'activityId': 3},
-                      );
-                    },
-                    icon: Icons.edit_outlined,
-                    title: "Menulis",
-                  ),
-                ],
-              ),
-
-              const SizedBox(height: 20),
-
-              // Row 2: Berhitung (centered)
-              ButtonHome(
                 onPressed: () {
                   taskController.taskType.value = 'hitung';
                   Get.toNamed(
@@ -92,6 +75,13 @@ class CategoryPage extends StatelessWidget {
                 icon: Icons.calculate_outlined,
                 title: "Berhitung",
               ),
+                ],
+              ),
+
+              const SizedBox(height: 20),
+
+              // Row 2: Berhitung (centered)
+              
 
               const Spacer(),
 

@@ -238,7 +238,7 @@ class HomePage extends StatelessWidget {
         Transform.rotate(
           angle: -0.00,
           child: Container(
-            width: 450,
+            width: 190,
             height: 500,
             decoration: BoxDecoration(
               color: const Color.fromARGB(255, 255, 255, 255),

@@ -31,8 +31,6 @@ class _TaskPageState extends State<TaskPage> {
           switch (taskController.taskType.value) {
             case 'baca':
               return const BacaTask();
-            case 'tulis':
-              return const TulisTask();
             case 'hitung':
               return const HitungTask();
             default:
