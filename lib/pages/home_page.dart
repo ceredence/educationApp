@@ -1,9 +1,7 @@
 import 'package:dinacomapp/controller/task_controller.dart';
 import 'package:dinacomapp/routes/routes.dart';
-import 'package:dinacomapp/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});

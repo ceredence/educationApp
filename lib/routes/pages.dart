@@ -31,7 +31,7 @@ class AppPages {
     GetPage(name: AppRoutes.loginPage, page: () => LoginPage(),bindings: [AuthBinding(),]),
     GetPage(name: AppRoutes.splashPage, page: () => SplashPage(),binding: SplashBinding()),
     GetPage(name: AppRoutes.registerPage, page: () => RegisterPage(),bindings: [AuthBinding()]),
-    GetPage(name: AppRoutes.summaryPage, page: () => RegisterPage()),
+    GetPage(name: AppRoutes.summaryPage, page: () => SummaryPage(), binding: SummaryBinding()),
     GetPage(name: AppRoutes.profilePage, page: () => ProfilePage()),
     GetPage(name: AppRoutes.adminPage, page: () => AdminPage()),
     GetPage(name: AppRoutes.summaryPage, page: () => SummaryPage(), binding: SummaryBinding()),
