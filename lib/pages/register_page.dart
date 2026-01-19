@@ -1,6 +1,10 @@
 import 'package:dinacomapp/Components/custom.textfild.dart';
 import 'package:dinacomapp/Components/custom_button.dart';
 import 'package:dinacomapp/Components/custom_teks.dart';
+import 'package:dinacomapp/controller/auth_controller.dart';
+
+import 'package:dinacomapp/controller/google_auth_controller.dart';
+import 'package:dinacomapp/pages/login_page.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,11 +13,12 @@ import 'package:get/get.dart';
 class RegisterPage extends StatelessWidget {
   RegisterPage({super.key});
 
-  final controller = Get.find<AuthController>();
+  final controller1 = Get.find<AuthController>();
+  final controller = Get.find<GoogleAuthController>();
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<GoogleAuthController>();
+
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: SafeArea(
@@ -39,14 +44,17 @@ class RegisterPage extends StatelessWidget {
                   CustomTextFild(
                     hintText: 'username',
                     keyboardType: TextInputType.emailAddress,
-                    controller: controller.usernameController,
+                    controller: controller1.usernameController,
                   ),
                   const SizedBox(height: 12),
 
                   CustomTextFild(
 
+                    hintText: 'email',
+
+
                     keyboardType: TextInputType.name,
-                    controller: controller.emailController,
+                    controller: controller1.emailController,
                   ),
                   const SizedBox(height: 12),
 
@@ -54,9 +62,17 @@ class RegisterPage extends StatelessWidget {
                     hintText: 'Sandi',
                     isPassword: true,
                     keyboardType: TextInputType.visiblePassword,
-                    controller: controller.passwordController,
+                    controller: controller1.passwordController,
                   ),
                   const SizedBox(height: 12),
+
+
+                  CustomTextFild(
+                    hintText: 'Konfirmasi Sandi',
+                    isPassword: true,
+                    keyboardType: TextInputType.visiblePassword,
+                  ),
+                  const SizedBox(height: 24),
 
 
                   // CustomTextFild(
@@ -68,7 +84,7 @@ class RegisterPage extends StatelessWidget {
                   CustomButton(
                     text: 'Daftar',
                     onPressed: () {
-                      controller.register();
+                      controller1.register();
                     },
                   ),
                   CustomButton(
@@ -77,6 +93,12 @@ class RegisterPage extends StatelessWidget {
                       debugPrint('Cetas Login');
                     },
                   ),
+
+
+                  CustomButton(text: 'Lanjutkan dengan Google', onPressed:(){
+                    controller.signInWithGoogle();
+                  },
+                 ),
 
                 ],
               ),
@@ -87,3 +109,6 @@ class RegisterPage extends StatelessWidget {
     );
   }
 }
+
+
+
