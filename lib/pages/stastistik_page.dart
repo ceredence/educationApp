@@ -1,10 +1,14 @@
+import 'package:dinacomapp/controller/statistik_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class StatistikPage extends StatelessWidget {
   const StatistikPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final statistik = Get.find<StatistikController>();
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -36,28 +40,22 @@ class StatistikPage extends StatelessWidget {
 
             const SizedBox(height: 24),
 
-            _infoCard(
-              title: "Reading",
-              icon: Icons.menu_book,
-              color: Colors.pinkAccent,
-              description:
-                  "Anak memiliki performa tinggi saat membaca. Bisa ditingkatkan kembali dengan lebih sering mengajak anak berbicara.",
+            Obx(
+              () => _infoCard(
+                title: "Membaca",
+                icon: Icons.menu_book,
+                color: Colors.pinkAccent,
+                description: statistik.reading.value,
+              ),
             ),
 
-            _infoCard(
-              title: "Counting",
-              icon: Icons.calculate,
-              color: Colors.purpleAccent,
-              description:
-                  "Anak cenderung berada di soal penjumlahan dua angka lebih lama. Bisa ditingkatkan dengan memberikan contoh soal yang lebih simpel.",
-            ),
-
-            _infoCard(
-              title: "Writing",
-              icon: Icons.edit,
-              color: Colors.pink,
-              description:
-                  "Anak bisa menulis kata dengan jelas. Bisa ditingkatkan dengan melanjutkan pada menulis satu kalimat.",
+            Obx(
+              () => _infoCard(
+                title: "Berhitung",
+                icon: Icons.calculate,
+                color: Colors.purpleAccent,
+                description: statistik.counting.value,
+              ),
             ),
 
             const SizedBox(height: 30),
@@ -88,6 +86,8 @@ class StatistikPage extends StatelessWidget {
   // CHART
   // ======================
   Widget _chartBox() {
+    final statistik = Get.find<StatistikController>();
+
     final days = [
       "Senin",
       "Selasa",
@@ -98,36 +98,40 @@ class StatistikPage extends StatelessWidget {
       "Minggu",
     ];
 
-    final values = [3.0, 5.0, 8.0, 5.0, 6.5, 3.0, 2.0];
+    return Obx(() {
+      if (statistik.values.isEmpty) {
+        return const Text("Belum ada data statistik");
+      }
 
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey.shade300),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: List.generate(days.length, (index) {
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Container(
-                width: 22,
-                height: values[index] * 15,
-                decoration: BoxDecoration(
-                  color: Colors.lightBlue,
-                  borderRadius: BorderRadius.circular(6),
+      return Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.grey.shade300),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: List.generate(days.length, (index) {
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(
+                  width: 22,
+                  height: statistik.values[index] * 15,
+                  decoration: BoxDecoration(
+                    color: Colors.lightBlue,
+                    borderRadius: BorderRadius.circular(6),
+                  ),
                 ),
-              ),
-              const SizedBox(height: 6),
-              Text(days[index], style: const TextStyle(fontSize: 10)),
-            ],
-          );
-        }),
-      ),
-    );
+                const SizedBox(height: 6),
+                Text(days[index], style: const TextStyle(fontSize: 10)),
+              ],
+            );
+          }),
+        ),
+      );
+    });
   }
 
   // ======================

@@ -14,7 +14,7 @@ class SplashPage extends StatelessWidget {
       backgroundColor: Colors.white,
       body: Center(
         child: Image.asset(
-          'assets/awan.png',
+          'assets/maskot.png',
           width: 200,
           height: 200,
           fit: BoxFit.contain,
