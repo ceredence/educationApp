@@ -59,7 +59,7 @@ class TaskController extends GetxController {
     final id = questionIds[currentIndex.value];
 
     try {
-      final url = 'http://192.168.1.13:8000/api/questions/$id';
+      final url = 'http://10.10.11.83:8000/api/questions/$id';
 
       final response = await http.get(Uri.parse(url));
 
@@ -90,7 +90,7 @@ class TaskController extends GetxController {
     final isCorrect = selectedAnswer.value == correctAnswer?.value.trim();
 
     final response = await http.post(
-      Uri.parse('http://192.168.1.13:8000/api/submissions'),
+      Uri.parse('http://10.10.11.83:8000/api/submissions'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({
         'submission_batch_id': batchId.value,
@@ -132,7 +132,7 @@ class TaskController extends GetxController {
       debugPrint('Level: $level');
 
       final response = await http.post(
-        Uri.parse('http://192.168.1.13:8000/api/batches/start'),
+        Uri.parse('http://10.10.11.83:8000/api/batches/start'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           'activity_id': activityId,
@@ -168,7 +168,7 @@ class TaskController extends GetxController {
 
   Future<void> finishBatch() async {
     final response = await http.post(
-      Uri.parse('http://192.168.1.13:8000/api/batches/${batchId.value}/finish'),
+      Uri.parse('http://10.10.11.83:8000/api/batches/${batchId.value}/finish'),
     );
 
     if (response.statusCode == 200) {
