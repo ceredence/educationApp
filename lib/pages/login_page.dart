@@ -27,7 +27,7 @@ class LoginPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   CustomText(
-                    myText: "Welcome Back",
+                    myText: "Selamat datang kembali",
                     align: TextAlign.center,
                     fontSize: 24,
                     fontWeight: FontWeight.w600,
@@ -35,14 +35,14 @@ class LoginPage extends StatelessWidget {
                   const SizedBox(height: 32),
 
                   CustomTextFild(
-                    hintText: 'Username',
+                    hintText: 'Nama',
                     keyboardType: TextInputType.name,
                     controller: loginc.usernameController,
                   ),
                   const SizedBox(height: 12),
 
                   CustomTextFild(
-                    hintText: 'Password',
+                    hintText: 'Sandi',
                     isPassword: true,
                     keyboardType: TextInputType.visiblePassword,
                     controller: loginc.passwordController,
@@ -57,7 +57,7 @@ class LoginPage extends StatelessWidget {
                   ),
 
                   CustomButton(
-                    text: 'Continue With Google',
+                    text: 'Lanjutkan dengan Google',
                     onPressed: () {
                       controller.signInWithGoogle();
                     },

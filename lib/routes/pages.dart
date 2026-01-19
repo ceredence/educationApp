@@ -1,6 +1,7 @@
 import 'package:dinacomapp/bindings/auth_binding.dart';
 import 'package:dinacomapp/bindings/soal_binding.dart';
 import 'package:dinacomapp/bindings/splash_binding.dart';
+import 'package:dinacomapp/bindings/statistik_binding.dart';
 import 'package:dinacomapp/bindings/summary_binding.dart';
 import 'package:dinacomapp/bindings/task_binding.dart';
 import 'package:dinacomapp/pages/admin_page.dart';
@@ -31,10 +32,10 @@ class AppPages {
     GetPage(name: AppRoutes.loginPage, page: () => LoginPage(),bindings: [AuthBinding(),]),
     GetPage(name: AppRoutes.splashPage, page: () => SplashPage(),binding: SplashBinding()),
     GetPage(name: AppRoutes.registerPage, page: () => RegisterPage(),bindings: [AuthBinding()]),
-    GetPage(name: AppRoutes.summaryPage, page: () => SummaryPage()),
+
     GetPage(name: AppRoutes.profilePage, page: () => ProfilePage()),
     GetPage(name: AppRoutes.adminPage, page: () => AdminPage()),
     GetPage(name: AppRoutes.summaryPage, page: () => SummaryPage(), binding: SummaryBinding()),
-    GetPage(name: AppRoutes.statistikPage, page: () => StatistikPage()),
+    GetPage(name: AppRoutes.statistikPage, page: () => StatistikPage(), binding: StatistikBinding()),
   ];
 }

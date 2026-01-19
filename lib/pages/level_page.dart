@@ -56,14 +56,14 @@ class LevelPage extends StatelessWidget {
                           Get.snackbar(
                             "Error",
                             "Gagal memulai sesi",
-                            snackPosition: SnackPosition.BOTTOM,
+                            snackPosition: SnackPosition.TOP,
                           );
                         }
                       } catch (e) {
                         Get.snackbar(
                           "Error",
                           "Terjadi kesalahan: $e",
-                          snackPosition: SnackPosition.BOTTOM,
+                          snackPosition: SnackPosition.TOP,
                         );
                       } finally {
                         taskController.isLoading.value = false;

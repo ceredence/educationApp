@@ -43,8 +43,10 @@ android {
 
 dependencies {
     // Firebase Messaging SDK
+    implementation(platform("com.google.firebase:firebase-bom:34.8.0"))
     implementation("com.google.firebase:firebase-messaging:24.1.0")
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
+    implementation("com.google.firebase:firebase-analytics")
 }
 
 flutter {

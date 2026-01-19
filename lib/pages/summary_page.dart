@@ -58,7 +58,7 @@ class SummaryPage extends StatelessWidget {
                 child: CustomButton(
                   text: "Kembali",
                   onPressed: () {
-                    Get.offAllNamed(AppRoutes.homePage);
+                    Get.toNamed(AppRoutes.homePage);
                   },
                 ),
               ),
