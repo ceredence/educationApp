@@ -83,7 +83,7 @@ class StartPage extends StatelessWidget {
                 text: "Login",
 
                 onPressed: () {
-                  Get.offAllNamed(AppRoutes.loginPage);
+                  Get.toNamed(AppRoutes.loginPage);
                 },
               ),
             ),

@@ -294,6 +294,7 @@ class HomePage extends StatelessWidget {
             colors: [const Color(0xFFFFC1F2), const Color(0xFFFFB3ED)],
             icon: Icons.emoji_events_outlined,
             label: 'Pencapaian',
+            onPressed: () {},
           ),
         ),
         const SizedBox(width: 16),
@@ -302,6 +303,9 @@ class HomePage extends StatelessWidget {
             colors: [const Color(0xFFFFE08A), const Color(0xFFFFD670)],
             icon: Icons.description_outlined,
             label: 'Ringkasan',
+            onPressed: () {
+              Get.toNamed(AppRoutes.statistikPage);
+            },
           ),
         ),
       ],
@@ -312,39 +316,47 @@ class HomePage extends StatelessWidget {
     required List<Color> colors,
     required IconData icon,
     required String label,
+    required VoidCallback onPressed,
   }) {
-    return Container(
-      height: 120,
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: colors,
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
         borderRadius: BorderRadius.circular(25),
-        boxShadow: [
-          BoxShadow(
-            color: colors[0].withOpacity(0.3),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(icon, size: 42, color: const Color(0xFF2C2C2C)),
-          const SizedBox(height: 10),
-          Text(
-            label,
-            style: const TextStyle(
-              fontWeight: FontWeight.w600,
-              fontSize: 15,
-              color: Color(0xFF2C2C2C),
-              letterSpacing: -0.2,
+        onTap: onPressed,
+        child: Container(
+          height: 120,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: colors,
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
             ),
+            borderRadius: BorderRadius.circular(25),
+            boxShadow: [
+              BoxShadow(
+                color: colors[0].withOpacity(0.3),
+                blurRadius: 10,
+                offset: const Offset(0, 4),
+              ),
+            ],
           ),
-        ],
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(icon, size: 42, color: const Color(0xFF2C2C2C)),
+              const SizedBox(height: 10),
+              Text(
+                label,
+                style: const TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 15,
+                  color: Color(0xFF2C2C2C),
+                  letterSpacing: -0.2,
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

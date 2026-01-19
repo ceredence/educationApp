@@ -98,6 +98,8 @@ class TaskController extends GetxController {
         'predicted_answer': selectedAnswer.value,
         'submission_image_path': submissionImage.value,
         'confidence_score': isCorrect ? 1.0 : 0.3,
+        'activity_type': taskType.value, // 'reading' atau 'counting'
+        'difficulty': level.value,
       }),
     );
 

@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 // Background message handler
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized(); // ✅ WAJIB
+  WidgetsFlutterBinding.ensureInitialized(); 
   await Firebase.initializeApp();         
   runApp(const MyApp());
 }
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         // This is the theme of your application.
         colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 53, 49, 59)),
       ),
-      initialRoute: AppRoutes.homePage,
+      initialRoute: AppRoutes.splashPage,
       getPages: AppPages.pages,
     );
   }
