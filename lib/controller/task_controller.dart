@@ -90,7 +90,7 @@ class TaskController extends GetxController {
     final isCorrect = selectedAnswer.value == correctAnswer?.value.trim();
 
     final response = await http.post(
-      Uri.parse('http://10.10.11.83:8000/api/submissions'),
+      Uri.parse('g/api/submissions'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({
         'submission_batch_id': batchId.value,
