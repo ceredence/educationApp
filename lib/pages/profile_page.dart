@@ -1,8 +1,12 @@
 import 'package:dinacomapp/Components/custom_color.dart';
+import 'package:dinacomapp/controller/auth_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+   ProfilePage({super.key});
+   final controller = Get.find<AuthController>();
+
 
   @override
   Widget build(BuildContext context) {
@@ -90,11 +94,14 @@ class ProfilePage extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () {
                   // logout logic
+                  controller.logout();
                 },
                 style: ElevatedButton.styleFrom(
+                  
                   backgroundColor: Colors.red[300],
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
+                  
                   ),
                 ),
                 child: const Text("Log Out"),

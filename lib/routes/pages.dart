@@ -38,7 +38,7 @@ class AppPages {
       page: () => SummaryPage(),
       binding: SummaryBinding(),
     ),
-    GetPage(name: AppRoutes.profilePage, page: () => ProfilePage()),
+    GetPage(name: AppRoutes.profilePage, page: () => ProfilePage(),binding: AuthBinding()),
     GetPage(name: AppRoutes.adminPage, page: () => AdminPage()),
     GetPage(name: AppRoutes.summaryPage, page: () => SummaryPage(), binding: SummaryBinding()),
     GetPage(name: AppRoutes.statistikPage, page: () => StatistikPage(), binding: StatistikBinding()),
