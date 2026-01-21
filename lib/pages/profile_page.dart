@@ -1,11 +1,15 @@
 import 'package:dinacomapp/Components/custom_color.dart';
+import 'package:dinacomapp/controller/auth_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<AuthController>();
+
     return Scaffold(
       backgroundColor: const Color(0xffEAF6FF),
       appBar: AppBar(
@@ -56,11 +60,8 @@ class ProfilePage extends StatelessWidget {
 
             _profileItem("Nama Pembimbing", "Esti Janitra Gumilang"),
             _profileItem("Email", "agustingalih@gmail.com"),
-            _profileItem("No. HP", "08xxxxxxxxxx"),
-            _profileItem(
-              "Catatan",
-              "Perlu pemantauan rutin dan laporan mingguan.",
-            ),
+            _profileItem("Jenis Kelamin", "Perempuan"),
+            _profileItem("Umur", "16"),
 
             const SizedBox(height: 32),
 
@@ -90,6 +91,7 @@ class ProfilePage extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () {
                   // logout logic
+                  controller.logout();
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.red[300],

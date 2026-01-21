@@ -44,7 +44,7 @@ class GoogleAuthController extends GetxController {
         Get.snackbar(
           "Login Berhasil",
           "Email: ${user.email ?? '-'}",
-          snackPosition: SnackPosition.BOTTOM,
+          snackPosition: SnackPosition.TOP,
         );
 
         Get.offAllNamed(AppRoutes.homePage);
@@ -53,7 +53,7 @@ class GoogleAuthController extends GetxController {
       Get.snackbar(
         "Login Gagal",
         e.toString(),
-        snackPosition: SnackPosition.BOTTOM,
+        snackPosition: SnackPosition.TOP,
       );
     } finally {
       isGoogleLoading.value = false;

@@ -4,7 +4,6 @@ import 'package:dinacomapp/Components/custom_teks.dart';
 import 'package:dinacomapp/controller/auth_controller.dart';
 
 import 'package:dinacomapp/controller/google_auth_controller.dart';
-import 'package:dinacomapp/pages/login_page.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -42,17 +41,14 @@ class RegisterPage extends StatelessWidget {
                   const SizedBox(height: 32),
 
                   CustomTextFild(
-                    hintText: 'username',
+                    hintText: 'Nama',
                     keyboardType: TextInputType.emailAddress,
                     controller: controller1.usernameController,
                   ),
                   const SizedBox(height: 12),
 
                   CustomTextFild(
-
-                    hintText: 'email',
-
-
+                    hintText: 'Email',
                     keyboardType: TextInputType.name,
                     controller: controller1.emailController,
                   ),
@@ -87,13 +83,6 @@ class RegisterPage extends StatelessWidget {
                       controller1.register();
                     },
                   ),
-                  CustomButton(
-                    text: 'Continue With Google',
-                    onPressed: () {
-                      debugPrint('Cetas Login');
-                    },
-                  ),
-
 
                   CustomButton(text: 'Lanjutkan dengan Google', onPressed:(){
                     controller.signInWithGoogle();
