@@ -11,13 +11,21 @@ String welcomeToJson(Welcome data) => json.encode(data.toJson());
 class Welcome {
   String message;
   User user;
+  String token;
 
-  Welcome({required this.message, required this.user});
+  Welcome({required this.message, required this.user, required this.token});
 
-  factory Welcome.fromJson(Map<String, dynamic> json) =>
-      Welcome(message: json["message"], user: User.fromJson(json["user"]));
+  factory Welcome.fromJson(Map<String, dynamic> json) => Welcome(
+    message: json["message"],
+    user: User.fromJson(json["user"]),
+    token: json["token"],
+  );
 
-  Map<String, dynamic> toJson() => {"message": message, "user": user.toJson()};
+  Map<String, dynamic> toJson() => {
+    "message": message,
+    "user": user.toJson(),
+    "token": token,
+  };
 }
 
 class User {

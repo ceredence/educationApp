@@ -236,22 +236,23 @@ class HomePage extends StatelessWidget {
         Transform.rotate(
           angle: -0.00,
           child: Container(
-            width: 190,
-            height: 500,
+            width: 160,
+            height: 300,
             decoration: BoxDecoration(
               color: const Color.fromARGB(255, 255, 255, 255),
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(10),
             ),
             child: Center(
               child: Image.asset(
                 'assets/maskot_play.png',
-                width: 300,
+                width: 800,
+                height: 900,
                 fit: BoxFit.contain,
               ),
             ),
           ),
         ),
-        const SizedBox(width: 20),
+        const SizedBox(width: 10),
         GestureDetector(
           onTap: () {
             Get.toNamed(AppRoutes.categoryPage);

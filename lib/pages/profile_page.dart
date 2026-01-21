@@ -9,6 +9,8 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<AuthController>();
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(

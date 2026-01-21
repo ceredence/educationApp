@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:dinacomapp/authHelper.dart';
 import 'package:dinacomapp/model/question_model.dart';
 import 'package:dinacomapp/routes/routes.dart';
 import 'package:flutter/foundation.dart';
@@ -7,6 +8,8 @@ import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 
 class TaskController extends GetxController {
+  final String baseUrl = "http://192.168.1.15:8000/api";
+
   // question
   final RxString question = "pertanyaan".obs;
   final RxString taskType = 'baca'.obs;
@@ -59,7 +62,7 @@ class TaskController extends GetxController {
     final id = questionIds[currentIndex.value];
 
     try {
-      final url = 'http://10.10.11.83:8000/api/questions/$id';
+      final url = '$baseUrl/questions/$id';
 
       final response = await http.get(Uri.parse(url));
 
@@ -88,10 +91,11 @@ class TaskController extends GetxController {
   // submit answer
   Future<bool> submitAnswer() async {
     final isCorrect = selectedAnswer.value == correctAnswer?.value.trim();
+    final headers = await authHeader();
 
     final response = await http.post(
-      Uri.parse('g/api/submissions'),
-      headers: {'Content-Type': 'application/json'},
+      Uri.parse('$baseUrl/submissions'),
+      headers: headers,
       body: jsonEncode({
         'submission_batch_id': batchId.value,
         'question_id': questionId.value,
@@ -131,9 +135,11 @@ class TaskController extends GetxController {
       debugPrint('Activity ID: $activityId');
       debugPrint('Level: $level');
 
+      final headers = await authHeader();
+
       final response = await http.post(
-        Uri.parse('http://10.10.11.83:8000/api/batches/start'),
-        headers: {'Content-Type': 'application/json'},
+        Uri.parse("$baseUrl/batches/start"),
+        headers: headers,
         body: jsonEncode({
           'activity_id': activityId,
           'level': level,
@@ -167,8 +173,11 @@ class TaskController extends GetxController {
   }
 
   Future<void> finishBatch() async {
+    final headers = await authHeader();
+
     final response = await http.post(
-      Uri.parse('http://10.10.11.83:8000/api/batches/${batchId.value}/finish'),
+      Uri.parse('$baseUrl/batches/${batchId.value}/finish'),
+      headers: headers 
     );
 
     if (response.statusCode == 200) {
@@ -215,10 +224,10 @@ class TaskController extends GetxController {
 
     // reset state
     selectedAnswer.value = '';
-    currentIndex.value++;
 
     if (currentIndex.value < questionIds.length) {
       await fetchQuestionByIndex();
+      currentIndex.value++;
     } else {
       await finishBatch();
 

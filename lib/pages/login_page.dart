@@ -51,7 +51,7 @@ class LoginPage extends StatelessWidget {
 
                    Obx(
                     () => CustomButton(
-                      text: loginc.isLoading.value ? 'Loading...' : 'Login',
+                      text: loginc.isLoading.value ? 'Memuat...' : 'Masuk',
                       onPressed: loginc.login,
                     ),
                   ),

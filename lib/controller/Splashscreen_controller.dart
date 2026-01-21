@@ -11,24 +11,27 @@ class SplashscreenController extends GetxController {
   }
 
   Future<void> checkLogin() async {
-    await Future.delayed(const Duration(seconds: 3));
+  await Future.delayed(const Duration(seconds: 3));
 
-    final prefs = await SharedPreferences.getInstance();
-    final loginType = prefs.getString('login_type');
+  final prefs = await SharedPreferences.getInstance();
+  final loginType = prefs.getString('login_type');
+  final isLoggedIn = prefs.getBool('is_logged_in') ?? false;
 
-    // 🔹 GOOGLE USER
-    if (loginType == 'google' && FirebaseAuth.instance.currentUser != null) {
-      Get.offAllNamed(AppRoutes.homePage);
-      return;
-    }
-
-    // 🔹 USER BIASA
-    if (loginType == 'manual' && prefs.getBool('is_logged_in') == true) {
-      Get.offAllNamed(AppRoutes.homePage);
-      return;
-    }
-
-    // 🔹 BELUM LOGIN
-    Get.offAllNamed(AppRoutes.startPage);
+  // 🔹 GOOGLE USER
+  if (loginType == 'google' &&
+      FirebaseAuth.instance.currentUser != null &&
+      isLoggedIn) {
+    Get.offAllNamed(AppRoutes.homePage);
+    return;
   }
+
+  // 🔹 USER MANUAL
+  if (loginType == 'manual' && isLoggedIn) {
+    Get.offAllNamed(AppRoutes.homePage);
+    return;
+  }
+
+  // 🔹 BELUM LOGIN
+  Get.offAllNamed(AppRoutes.startPage);
+}
 }
