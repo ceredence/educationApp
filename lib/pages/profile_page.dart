@@ -1,8 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:dinacomapp/Components/custom_color.dart';
+
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+   ProfilePage({super.key});
+   final controller = Get.find<AuthController>();
+
 
   @override
   Widget build(BuildContext context) {
@@ -109,12 +110,7 @@ class ProfilePage extends StatelessWidget {
                     textColor: Colors.black,
                     onTap: () => Navigator.pop(context),
                   ),
-                  const SizedBox(height: 12),
-                  _actionButton(
-                    text: "Log Out",
-                    color: Color(0xffFF8A8A),
-                    textColor: Colors.black,
-                    onTap: () {},
+
                   ),
                 ],
               ),
