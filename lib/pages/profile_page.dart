@@ -1,9 +1,11 @@
-
+import 'package:dinacomapp/Components/custom_color.dart';
+import 'package:dinacomapp/controller/auth_controller.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ProfilePage extends StatelessWidget {
-   ProfilePage({super.key});
-   final controller = Get.find<AuthController>();
-
+  ProfilePage({super.key});
+  final controller = Get.find<AuthController>();
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,6 @@ class ProfilePage extends StatelessWidget {
               ),
               child: Stack(
                 children: [
-                  // icon wajah dummy dulu
                   Align(
                     alignment: Alignment.topCenter,
                     child: Padding(
@@ -44,28 +45,6 @@ class ProfilePage extends StatelessWidget {
                       ),
                     ),
                   ),
-
-                  // Foto profile
-                  Positioned(
-                    left: 24,
-                    bottom: 20,
-                    child: Container(
-                      height: 90,
-                      width: 90,
-                      decoration: BoxDecoration(
-                        color: Colors.grey[300],
-                        borderRadius: BorderRadius.circular(20),
-                        border: Border.all(color: Colors.white, width: 3),
-                      ),
-                      child: const Center(
-                        child: Text(
-                          "foto\nprofile",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 12),
-                        ),
-                      ),
-                    ),
-                  ),
                 ],
               ),
             ),
@@ -74,14 +53,12 @@ class ProfilePage extends StatelessWidget {
 
             // ================= DATA SISWA =================
             _sectionTitle("Data Siswa"),
-
             _editableField("Nama Panggilan", "Tinus"),
             _editableField("Nama Lengkap", "Agustinus Galih Gumilang"),
             _editableMultiline(
               "Catatan",
-              "Tinus sulit fokus dan mudah terdistraksi saat belajar. Ia membutuhkan instruksi singkat serta arahan bertahap agar dapat mengikuti pembelajaran dengan lebih baik.",
+              "Tinus sulit fokus dan mudah terdistraksi saat belajar.",
             ),
-
             _genderRadio(),
             _ageField("16"),
 
@@ -89,13 +66,9 @@ class ProfilePage extends StatelessWidget {
 
             // ================= DATA PEMBIMBING =================
             _sectionTitle("Data Pembimbing"),
-
             _editableField("Nama Panggilan", "Esta"),
             _editableField("Nama Lengkap", "Esta Janitra Gumilang"),
             _readOnlyField("Email", "agustinuzgalih@gmail.com"),
-
-            _genderRadio(),
-            _ageField("16"),
 
             const SizedBox(height: 32),
 
@@ -106,11 +79,16 @@ class ProfilePage extends StatelessWidget {
                 children: [
                   _actionButton(
                     text: "Kembali",
-                    color: Color(0xffBFDFFF),
+                    color: const Color(0xffBFDFFF),
                     textColor: Colors.black,
                     onTap: () => Navigator.pop(context),
                   ),
-
+                  const SizedBox(height: 12),
+                  _actionButton(
+                    text: "Log Out",
+                    color: const Color(0xffFF8A8A),
+                    textColor: Colors.black,
+                    onTap: () => controller.logout(),
                   ),
                 ],
               ),
@@ -130,10 +108,7 @@ class ProfilePage extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 16),
       child: Text(
         title,
-        style: const TextStyle(
-          fontSize: 22,
-          fontWeight: FontWeight.bold,
-        ),
+        style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
       ),
     );
   }
@@ -142,9 +117,7 @@ class ProfilePage extends StatelessWidget {
     return _baseContainer(
       child: Row(
         children: [
-          Expanded(
-            child: _labelValue(label, value),
-          ),
+          Expanded(child: _labelValue(label, value)),
           const Icon(Icons.edit, size: 18),
         ],
       ),
@@ -156,9 +129,7 @@ class ProfilePage extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Expanded(
-            child: _labelValue(label, value),
-          ),
+          Expanded(child: _labelValue(label, value)),
           const Icon(Icons.edit, size: 18),
         ],
       ),
@@ -166,21 +137,10 @@ class ProfilePage extends StatelessWidget {
   }
 
   Widget _readOnlyField(String label, String value) {
-  return _baseContainer(
-    child: Row(
-      children: [
-        Expanded(
-          child: _labelValue(label, value),
-        ),
-        const Opacity(
-          opacity: 0, // tetap makan ruang tapi tidak terlihat
-          child: Icon(Icons.edit, size: 18),
-        ),
-      ],
-    ),
-  );
-}
-
+    return _baseContainer(
+      child: Row(children: [Expanded(child: _labelValue(label, value))]),
+    );
+  }
 
   Widget _genderRadio() {
     return Padding(
@@ -188,15 +148,17 @@ class ProfilePage extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: const [
-          Text("Jenis Kelamin",
-              style: TextStyle(fontSize: 13, color: Colors.grey)),
+          Text(
+            "Jenis Kelamin",
+            style: TextStyle(fontSize: 13, color: Colors.grey),
+          ),
           SizedBox(height: 6),
           Row(
             children: [
-              Radio(value: 1, groupValue: 2, onChanged: null),
-              Text("Laki - laki"),
+              Radio(value: 1, groupValue: 1, onChanged: null),
+              Text("Laki-laki"),
               SizedBox(width: 20),
-              Radio(value: 2, groupValue: 2, onChanged: null),
+              Radio(value: 2, groupValue: 1, onChanged: null),
               Text("Perempuan"),
             ],
           ),
@@ -242,10 +204,7 @@ class ProfilePage extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
           ),
         ),
-        child: Text(
-          text,
-          style: TextStyle(color: textColor, fontSize: 16),
-        ),
+        child: Text(text, style: TextStyle(color: textColor, fontSize: 16)),
       ),
     );
   }
@@ -266,11 +225,12 @@ class ProfilePage extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label,
-            style: const TextStyle(fontSize: 12, color: Colors.grey)),
+        Text(label, style: const TextStyle(fontSize: 12, color: Colors.grey)),
         const SizedBox(height: 4),
-        Text(value,
-            style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500)),
+        Text(
+          value,
+          style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+        ),
       ],
     );
   }
