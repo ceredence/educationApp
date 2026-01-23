@@ -67,6 +67,7 @@ class RegisterPage extends StatelessWidget {
                     hintText: 'Konfirmasi Sandi',
                     isPassword: true,
                     keyboardType: TextInputType.visiblePassword,
+                    controller : controller1.passwordController
                   ),
                   const SizedBox(height: 24),
 
